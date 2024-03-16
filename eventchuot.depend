@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1710167918 source:d:\new folder\tách file\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+	"logic.h"
+
+1710166808 d:\new folder\tách file\defs.h
+
+1710167918 d:\new folder\tách file\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"logic.h"
+
+1710168032 d:\new folder\tách file\logic.h
+
+1710171518 source:d:\new folder\tictactoe\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+	"logic.h"
+
+1710169290 d:\new folder\tictactoe\defs.h
+
+1710169128 d:\new folder\tictactoe\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"logic.h"
+
+1710171105 d:\new folder\tictactoe\logic.h
+
+1710306021 source:d:\sdl\tictactoe\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+	"logic.h"
+
+1710169290 d:\sdl\tictactoe\defs.h
+
+1710350619 d:\sdl\tictactoe\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"logic.h"
+
+1710351489 d:\sdl\tictactoe\logic.h
+

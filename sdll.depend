@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1710058514 source:d:\new folder\sdll\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1710059626 source:d:\new folder\tách file\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
