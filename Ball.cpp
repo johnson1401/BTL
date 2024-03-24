@@ -4,13 +4,13 @@ Ball::Ball(SDL_Renderer* ball_renderer)
 {
     renderer = ball_renderer;
 
-    BallTexture = IMG_LoadTexture(renderer, "ball.png");
+    BallTexture = IMG_LoadTexture(renderer, "ball1.png");
 
 
     x = 0;
     y = 0;
-    width = 24;
-    height = 24;
+    width = 48;
+    height = 48;
 
 }
 
@@ -26,6 +26,7 @@ void Ball::Update(float delta)
 {
     x += dirx * delta;          //using delta in movements to avoid fps spike
     y += diry * delta;
+
 }
 
 void Ball::Render()
