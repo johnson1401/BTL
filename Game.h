@@ -13,12 +13,15 @@
 #include "Paddle.h"
 #include "Ball.h"
 
-const int SCREEN_WIDTH = 848;
-const int SCREEN_HEIGHT = 600;
+
 
 struct Game {
     bool Init();
     void Run();
+
+    SDL_Texture* backgroundTexture;
+
+
 
     SDL_Window* window;
     SDL_Renderer* renderer;
