@@ -19,6 +19,10 @@ struct Game {
     bool Init();
     void Run();
 
+    SDL_Texture* backgroundTexture;
+
+
+
     SDL_Window* window;
     SDL_Renderer* renderer;
     SDL_Texture* texture;
