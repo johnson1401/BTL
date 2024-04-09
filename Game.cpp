@@ -34,8 +34,15 @@ bool Game::Init()   //Initialize SDL
             success = false;
         }
 
+        // Load background texture từ tệp hình ảnh
+        backgroundTexture = IMG_LoadTexture(renderer, "background.jpg");
+        if (backgroundTexture == NULL) {
+        printf("Failed to load background texture! SDL Error: %s\n", SDL_GetError());
+        success = false;
+        }
+
         //create music
-        music = Mix_LoadMUS( "opt.wav" );
+        music = Mix_LoadMUS( "kinhdi.mp3" );
         if( music == NULL)
         {
         printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
@@ -43,7 +50,7 @@ bool Game::Init()   //Initialize SDL
         }
 
         //create sound effect
-        sound = Mix_LoadWAV("collide.wav");
+        sound = Mix_LoadWAV("sword.mp3");
         if( sound == NULL )
         {
         printf( "Failed to load medium sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
@@ -108,9 +115,10 @@ void Game::Run() //How the game works
                 {
                 break;          // break from while
                 }
-                else if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
-            HandleKeyboardEvent(e);
-            }
+                else if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
+                    {
+                            HandleKeyboardEvent(e);
+                    }
         }
 
         // delta timing
@@ -123,10 +131,7 @@ void Game::Run() //How the game works
         Render();
         SDL_Delay(10);
 
-        //Delay frame rates
-        /*actualDelay = SDL_GetTicks() - startframe;
-        if(FRAME_DELAY > actualDelay)
-            SDL_Delay(FRAME_DELAY - actualDelay);*/
+
 
         if(isRunning == false)  // Game stops by a condition somewhere
             break;
@@ -152,7 +157,7 @@ void Game::CleanUp()        // Clean up when the game ended
 
 void Game::StartGame()
 {
-    field->CreateBricks();
+    field->createBricks(level);
     ResetPaddle();
     PlayMusic();
 }
@@ -171,7 +176,7 @@ void Game::InitBall()
 
 void Game::Update(float delta)
 {
-    // Game logic
+
 
     // mouse handling
     int mouse_x, mouse_y;
@@ -189,7 +194,7 @@ void Game::Update(float delta)
         if (Ball_on_Paddle)         // ball leaves paddle
         {
             Ball_on_Paddle = false;
-            ball->SetDirection(1, -1);
+            ball->SetDirection(1, 10);
         }
     }
 
@@ -209,7 +214,7 @@ void Game::Update(float delta)
         if(level < 3)
         {
             level++;
-            ball->BALL_SPEED += 150;        // Ball go faster
+            ball->speed += 150;        // Ball go faster
             StartGame();
         }
     }
@@ -224,7 +229,8 @@ void Game::Update(float delta)
 void Game::Render()
 {
     SDL_RenderClear(renderer);
-    field->Render();
+    SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
+    field->Render(level);
     paddle->Render();
     ball->Render();
     SDL_RenderPresent(renderer);
@@ -266,7 +272,7 @@ void Game::FieldCollision()
     {
         // Top
         ball->y = field->y;
-        ball->diry *= -1;
+        ball->dirY *= -1;
     }
     else if (ball->y + ball->height > field->y + field->height)
     {
@@ -286,13 +292,13 @@ void Game::FieldCollision()
     {
         // Left
         ball->x = field->x;
-        ball->dirx *= -1;
+        ball->dirX *= -1;
     }
     else if (ball->x + ball->width > field->x + field->width)
     {
         // Right
         ball->x = field->x + field->width - ball->width;
-        ball->dirx *= -1;
+        ball->dirX *= -1;
     }
 }
 
@@ -301,7 +307,7 @@ void Game::BrickCollision() {
         for (int j=0; j<BRICK_NUM_HEIGHT; j++) {
 
             // Check if brick is present
-            if (field->bricks[i][j].condition) {
+            if (field->bricks[i][j].isAlive) {
                 // Brick x and y coordinates
                 float brickx = field->x + i*BRICK_WIDTH;
                 float bricky = field->y + j*BRICK_HEIGHT;
@@ -314,7 +320,7 @@ void Game::BrickCollision() {
                 if (fabs(dx) <= w && fabs(dy) <= h) {
                     // Collision detected
                     PlaySoundEffect();
-                    field->bricks[i][j].condition = false;
+                    field->bricks[i][j].isAlive = false;
 
                     float wy = w * fabs(dy);
                     float hx = h * fabs(dx);
@@ -360,9 +366,9 @@ void Game::SideCollision(int sidehit)       //Solving bugs involving hitting the
     int cx = 1;
     int cy = 1;
 
-    if (ball->dirx > 0)
+    if (ball->dirX > 0)
     {
-        if (ball->diry > 0)
+        if (ball->dirY > 0)
         {
             // +1 +1
             if (sidehit == 0 || sidehit == 3)
@@ -374,7 +380,7 @@ void Game::SideCollision(int sidehit)       //Solving bugs involving hitting the
                 cy = -1;
             }
         }
-        else if (ball->diry <= 0)
+        else if (ball->dirY <= 0)
         {
             // +1 -1
             if (sidehit == 0 || sidehit == 1)
@@ -387,9 +393,9 @@ void Game::SideCollision(int sidehit)       //Solving bugs involving hitting the
             }
         }
     }
-    else if (ball->dirx <= 0)
+    else if (ball->dirX <= 0)
     {
-        if (ball->diry > 0)
+        if (ball->dirY > 0)
             {
             // -1 +1
             if (sidehit == 2 || sidehit == 3)
@@ -401,7 +407,7 @@ void Game::SideCollision(int sidehit)       //Solving bugs involving hitting the
                 cy = -1;
             }
         }
-        else if (ball->diry <= 0)
+        else if (ball->dirY <= 0)
         {
             // -1 -1
             if (sidehit == 1 || sidehit == 2)
@@ -415,7 +421,7 @@ void Game::SideCollision(int sidehit)       //Solving bugs involving hitting the
         }
     }
     // Set the new direction by multiplying the coefficient
-    ball->SetDirection(cx*ball->dirx, cy*ball->diry);
+    ball->SetDirection(cx*ball->dirX, cy*ball->dirY);
 }
 
 void Game::PaddleCollision()
@@ -452,7 +458,7 @@ int Game::BrickCount()  //count the destroyed bricks
     {
         for (int j=0; j<BRICK_NUM_HEIGHT; j++)
         {
-            if (field->bricks[i][j].condition == false)
+            if (field->bricks[i][j].isAlive == false)
                 brickcount++;
         }
     }

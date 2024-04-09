@@ -3,27 +3,64 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include <math.h>
+#include <cmath>
 
 struct Ball
 {
-public:
-    Ball(SDL_Renderer* renderer);
-    ~Ball();
 
-    float x, y, width, height;
-    float BALL_SPEED = 500;
+   Ball(SDL_Renderer* ballRenderer) : renderer(ballRenderer) {  // khoi tao thanh vien
+    x = 0;
+    y = 0;
+    width = 48;
+    height = 48;
+    speed = 500;
+    dirX = 0;
+    dirY = 0;
+    ballTexture = nullptr;
 
-    void Update(float delta);
-    void Render();
+    ballTexture = IMG_LoadTexture(renderer, "ball1.png");
+    }
+    ~Ball() {
+        // Clean resources
+        if (ballTexture != nullptr) {
+            SDL_DestroyTexture(ballTexture);
+        }
+    }
 
-    void SetDirection(float dirx, float diry);
+    void Update(float delta) {
+        x += dirX * delta;
+        y += dirY * delta;
+    }
 
-    float dirx, diry; //direction vector
+    void Render() {
+    SDL_Rect src; // Source rect
+    src.x = 0;
+    src.y = 0;
+    src.w = 200;
+    src.h = 200;
 
-private:
-    SDL_Texture* BallTexture;
+    SDL_Rect dest; // Destination rect
+    dest.x = x;
+    dest.y = y;
+    dest.w = width;
+    dest.h = height;
+
+    SDL_RenderCopy(renderer, ballTexture, &src, &dest);
+    }
+
+    void SetDirection(float _dirX, float _dirY) {
+        // Normalize the direction vector then multiply speed
+        float length = std::sqrt(_dirX * _dirX + _dirY * _dirY);
+        dirX = _dirX / length * speed;
+        dirY = _dirY / length * speed;
+    }
+
+
     SDL_Renderer* renderer;
+    SDL_Texture* ballTexture;
+    float x, y, width, height;
+    float speed;
+    float dirX, dirY; // Direction vector
 };
 
-#endif
+#endif // BALL_H_INCLUDED

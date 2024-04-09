@@ -13,12 +13,15 @@
 #include "Paddle.h"
 #include "Ball.h"
 
-const int SCREEN_WIDTH = 848;
-const int SCREEN_HEIGHT = 600;
+
 
 struct Game {
     bool Init();
     void Run();
+
+    SDL_Texture* backgroundTexture;
+
+
 
     SDL_Window* window;
     SDL_Renderer* renderer;
@@ -38,8 +41,8 @@ struct Game {
     bool Ball_on_Paddle;
     bool isRunning = true;
 
-    int life = 3;
-    int level = 1;
+    int life = 1;
+    int level = 2;
     int HitSpot;
 
     void Update(float delta);
@@ -48,12 +51,17 @@ struct Game {
     void StartGame();
     void ResetPaddle();
     void InitBall();
+
     void SetPaddlePosition(float x);
     float Reflection(float hitx);
+
+
     void FieldCollision();
     void PaddleCollision();
     void BrickCollision();
     void SideCollision(int sidehit);
+
+
     int BrickCount();
     void PlayMusic();
     void StopMusic();
@@ -61,7 +69,8 @@ struct Game {
     void ShowScore();
     void GameLost();
     void GameWin();
-    // void ShowHitSpot(); // Uncomment this if needed
+
+
     void SetPaddlePositionFromKeyboard();
     void HandleKeyboardEvent(SDL_Event& event);
 };
