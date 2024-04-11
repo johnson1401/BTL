@@ -72,7 +72,7 @@ struct Game {
     void GameWin();
 
 
-    void SetPaddlePositionFromKeyboard();
+
     void HandleKeyboardEvent(SDL_Event& event);
 };
 

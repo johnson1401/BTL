@@ -259,14 +259,6 @@ void Game::SetPaddlePosition(float x)       // Set the x rect of paddle
         }
         paddle->x = out_x;
     }
-void Game::SetPaddlePositionFromKeyboard() {
-    if (paddle->movingLeft) {
-        paddle->MoveLeft();
-    }
-    else if (paddle->movingRight) {
-        paddle->MoveRight();
-    }
-}
 
 void Game::FieldCollision()
 {
@@ -289,14 +281,14 @@ void Game::FieldCollision()
         else
             GameLost();
     }
-
+    // Left and right collisions
     if (ball->x < field->x)
     {
         // Left
         ball->x = field->x;
         ball->dirX *= -1;
     }
-    else if (ball->x + ball->width > field->x + field->width)
+    else if (ball->x + ball->width >= field->x + field->width)
     {
         // Right
         ball->x = field->x + field->width - ball->width;
@@ -304,22 +296,27 @@ void Game::FieldCollision()
     }
 }
 
-void Game::BrickCollision() {
-    for (int i=0; i<BRICK_NUM_WIDTH; i++) {
-        for (int j=0; j<BRICK_NUM_HEIGHT; j++) {
+void Game::BrickCollision()
+{
+    bool continueChecking = true; // Flag to continue checking collisions
 
-            // Check if brick is present
-            if (field->bricks[i][j].isAlive) {
+    for (int i = 0; i < BRICK_NUM_WIDTH && continueChecking; i++)
+    {
+        for (int j = 0; j < BRICK_NUM_HEIGHT && continueChecking; j++)
+        {
+            if (field->bricks[i][j].isAlive)
+            {
                 // Brick x and y coordinates
-                float brickx = field->x + i*BRICK_WIDTH;
-                float bricky = field->y + j*BRICK_HEIGHT;
+                float brickx = field->x + i * BRICK_WIDTH;
+                float bricky = field->y + j * BRICK_HEIGHT;
 
                 float w = 0.5f * (ball->width + BRICK_WIDTH); // Ball width + Brick width
                 float h = 0.5f * (ball->height + BRICK_HEIGHT);
-                float dx = (ball->x + 0.5f*ball->width) - (brickx + 0.5f*BRICK_WIDTH);    // Ball center - Brick center
-                float dy = (ball->y + 0.5f*ball->height) - (bricky + 0.5f*BRICK_HEIGHT);
+                float dx = (ball->x + 0.5f * ball->width) - (brickx + 0.5f * BRICK_WIDTH); // Ball center - Brick center
+                float dy = (ball->y + 0.5f * ball->height) - (bricky + 0.5f * BRICK_HEIGHT);
 
-                if (fabs(dx) <= w && fabs(dy) <= h) {
+                if (fabs(dx) <= w && fabs(dy) <= h)
+                {
                     // Collision detected
                     PlaySoundEffect();
                     field->bricks[i][j].isAlive = false;
@@ -353,12 +350,13 @@ void Game::BrickCollision() {
                             SideCollision(2);
                         }
                     }
-                    return;
+                    continueChecking = false; // Stop checking collisions
                 }
             }
         }
     }
 }
+
 
 void Game::SideCollision(int sidehit)       //Solving bugs involving hitting the intersection of 2 bricks
 {
@@ -428,28 +426,31 @@ void Game::SideCollision(int sidehit)       //Solving bugs involving hitting the
 
 void Game::PaddleCollision()
 {
-    // center of the ball
-    float ballcenterx = ball->x + ball->width / 2.0f;
+    // tam bong
+    float ballcenterx = ball->x + ball->width / 1.9f;
 
     // Check paddle collision
-    if (ball->x + ball->width > paddle->x &&
-        ball->x < paddle->x + paddle->width &&
-        ball->y + ball->height > paddle->y &&
-        ball->y < paddle->y + paddle->height)
+        float bongx = ball->x + ball->width;
+        float vanx = paddle->x + paddle->width;
+        float bongy = ball->y + ball->height;
+        float vany = paddle->y + paddle->height;
+
+
+    if (bongx > paddle->x &&  ball->x < vanx && bongy > paddle->y && ball->y < vany)
     {
         ball->y = paddle->y - ball->height;
         ball->SetDirection(Reflection(ballcenterx - paddle->x), -1);
     }
 }
 
-float Game::Reflection(float x) // range of x from 0 to paddle->width
+float Game::Reflection(float x)
 {
 
-    // Everything to the left of the center of the paddle is reflected to the left and vice versa
+    // phan lai dua tren duong di toi
     x -= paddle->width / 2.0f;
 
-    // range of -1 to 1
-    return  x / (paddle->width / 2.0f);
+    // range tu -1.5 den 1.5
+    return  x / (paddle->width / 2.0f) * 1.5f;
 }
 
 
