@@ -234,6 +234,8 @@ void Game::Render()
     paddle->Render();
     ball->Render();
     SDL_RenderPresent(renderer);
+
+
 }
 
 void Game::SetPaddlePosition(float x)       // Set the x rect of paddle
@@ -487,12 +489,35 @@ void Game::StopMusic()
 
 void Game::ShowScore()
 {
-    int score = BrickCount() * 100;
-    std::stringstream textscore;
-    textscore << "BrickBreaker                                                                            SCORE: " << score <<"       ||        LIFE: "<<life;
+    // Khởi tạo biến đếm số gạch và số gạch đã bị phá
+    int totalBricks = 0;
+    int destroyedBricks = 0;
 
-    SDL_SetWindowTitle( window, textscore.str().c_str());       //Put score on window title
+    // Đếm tổng số gạch và số gạch đã bị phá
+    for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
+    {
+        for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
+        {
+            if (field->bricks[i][j].isAlive)
+                totalBricks++;
+
+            if (!field->bricks[i][j].isAlive)
+                destroyedBricks++;
+        }
+    }
+
+    // Tính điểm số dựa trên số gạch đã bị phá
+    playerScore = destroyedBricks * 100;
+    if (level ==2) playerScore -= 4400;
+
+    // Tạo chuỗi điểm số và hiển thị trên tiêu đề cửa sổ
+    std::stringstream textscore;
+    textscore << "BrickBreaker                                                                            SCORE: " << playerScore <<"       ||        LIFE: "<<life;
+
+    SDL_SetWindowTitle( window, textscore.str().c_str());       // Đặt điểm số vào tiêu đề cửa sổ
 }
+
+
 
 void Game::GameLost()
 {
@@ -515,8 +540,4 @@ void Game::GameWin()
     }
 }
 
-/*void Game::ShowHitSpot()
-{
-    std::cout<<HitSpot<<" ";
-}*/
-
+// score

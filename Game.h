@@ -43,6 +43,7 @@ struct Game {
 
     int life = 1;
     int level = 2;
+    int playerScore = 0;
     int HitSpot;
 
     void Update(float delta);

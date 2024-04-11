@@ -57,166 +57,114 @@ struct Field
 }
 
     void Render(int level)
-    {
-        int i = 0;
-        int j = 0;
-       if (level == 1)
-       {
+{
+    SDL_Rect sourceRect;
+    sourceRect.x = 0;
+    sourceRect.y = 0;
+    sourceRect.w = 380;
+    sourceRect.h = 125;
 
+    SDL_Rect destinationRect;
+    destinationRect.w = BRICK_WIDTH;
+    destinationRect.h = BRICK_HEIGHT;
 
-        // Render bricks using while loop
-        while (i < BRICK_NUM_WIDTH)
-        {
-            j = 0;
-            while (j < BRICK_NUM_HEIGHT)
-            {
-                if (bricks[i][j].isAlive)
-                {
-                    SDL_Rect sourceRect;
-                    sourceRect.x = bricks[i][j].color1 * 380; // Source rect
+    // Render bricks
+    if (level == 1) {
+        for (int i = 0; i < BRICK_NUM_WIDTH; ++i) {
+            for (int j = 0; j < BRICK_NUM_HEIGHT; ++j) {
+                if (bricks[i][j].isAlive) {
+                    sourceRect.x = bricks[i][j].color1 * 380;
                     sourceRect.y = bricks[i][j].color2 * 125;
-                    sourceRect.w = 380;
-                    sourceRect.h = 125;
-
-                    SDL_Rect destinationRect;
-                    destinationRect.x = x + i * BRICK_WIDTH; // Destination rect
-                    destinationRect.y = j * BRICK_HEIGHT;
-                    destinationRect.w = BRICK_WIDTH;
-                    destinationRect.h = BRICK_HEIGHT;
-
+                    destinationRect.x = x + i * BRICK_WIDTH;
+                    destinationRect.y = y + j * BRICK_HEIGHT;
                     SDL_RenderCopy(renderer, brickTexture, &sourceRect, &destinationRect);
                 }
-                ++j;
             }
-            ++i;
         }
-
-
-
-
-       }
-
-
-       if (level == 2)
-       {
-
-
-
-        // Render bricks using while loop
-        while (i < BRICK_NUM_WIDTH)
-        {
-            j = 0;
-            while (j < BRICK_NUM_HEIGHT)
-            {
-            float distance = sqrt((i - center_x) * (i - center_x) + (j - center_y) * (j - center_y));
-             if (distance <= RADIUS_OUTER && distance >= RADIUS_INNER)
-             {
-
-
-                if (bricks[i][j].isAlive)
-                {
-                    SDL_Rect sourceRect;
-                    sourceRect.x = bricks[i][j].color1 * 380; // Source rect
-                    sourceRect.y = bricks[i][j].color2 * 125;
-                    sourceRect.w = 380;
-                    sourceRect.h = 125;
-
-                    SDL_Rect destinationRect;
-                    destinationRect.x = x + i * BRICK_WIDTH; // Destination rect
-                    destinationRect.y = j * BRICK_HEIGHT;
-                    destinationRect.w = BRICK_WIDTH;
-                    destinationRect.h = BRICK_HEIGHT;
-
-                    SDL_RenderCopy(renderer, brickTexture, &sourceRect, &destinationRect);
-                }
-             }
-                ++j;
-            }
-            ++i;
-        }
-       }
-
-        // Render sides
-        SDL_Rect realRect;
-        realRect.x = 0;
-        realRect.y = 0;
-        realRect.w = 33;
-        realRect.h = 128;
-
-        SDL_Rect sideRect;
-        sideRect.x = 0;                    // Left
-        sideRect.y = 0;
-        sideRect.w = 8;
-        sideRect.h = 600;
-        SDL_RenderCopy(renderer, sideTexture, &realRect, &sideRect);
-
-        sideRect.x = SCREEN_WIDTH - 8;     // Right
-        sideRect.y = 0;
-        sideRect.w = 8;
-        sideRect.h = 600;
-        SDL_RenderCopy(renderer, sideTexture, &realRect, &sideRect);
     }
+    else if (level == 2) {
+        float radius = RADIUS_OUTER * BRICK_WIDTH; // Convert the radius to pixel units
+        float center_x_pixel = center_x * BRICK_WIDTH + x;
+        float center_y_pixel = center_y * BRICK_HEIGHT + y;
+
+        for (int i = 0; i < BRICK_NUM_WIDTH; ++i) {
+            for (int j = 0; j < BRICK_NUM_HEIGHT; ++j) {
+                float brick_center_x = (i + 0.5) * BRICK_WIDTH + x;
+                float brick_center_y = (j + 0.5) * BRICK_HEIGHT + y;
+                float distance = sqrt((brick_center_x - center_x_pixel) * (brick_center_x - center_x_pixel) +
+                                      (brick_center_y - center_y_pixel) * (brick_center_y - center_y_pixel));
+
+                if (distance <= radius && bricks[i][j].isAlive) {
+                    sourceRect.x = bricks[i][j].color1 * 380;
+                    sourceRect.y = bricks[i][j].color2 * 125;
+                    destinationRect.x = x + i * BRICK_WIDTH;
+                    destinationRect.y = y + j * BRICK_HEIGHT;
+                    SDL_RenderCopy(renderer, brickTexture, &sourceRect, &destinationRect);
+                }
+            }
+        }
+    }
+
+    // Render sides
+    SDL_Rect sideRect;
+    sideRect.x = 0;                    // Left
+    sideRect.y = 0;
+    sideRect.w = 8;
+    sideRect.h = 600;
+    SDL_RenderCopy(renderer, sideTexture, &sourceRect, &sideRect);
+
+    sideRect.x = SCREEN_WIDTH - 8;     // Right
+    sideRect.y = 0;
+    sideRect.w = 8;
+    sideRect.h = 600;
+    SDL_RenderCopy(renderer, sideTexture, &sourceRect, &sideRect);
+}
+
+
+
 void createBricks(int level)
+{
+    srand(time(0)); // Randomizer
 
-    {
-        srand(time(0)); // Randomizer
-
-
-        // Tạo các bricks theo hình tròn đồng tâm
     if (level == 1)
     {
-
-
-        int i = 0;
-        int j = 0;
-
-        // Generate bricks using while loop
-        while (i < BRICK_NUM_WIDTH)
+        // Tạo các bricks theo hình chữ nhật
+        for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
         {
-            j = 0;
-            while (j < BRICK_NUM_HEIGHT)
+            for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
             {
                 bricks[i][j].color1 = rand() % 3;
                 bricks[i][j].color2 = rand() % 3; // Random color
                 bricks[i][j].isAlive = true;      // Brick is alive
-                ++j;
             }
-            ++i;
         }
     }
     else if (level == 2)
     {
-
-        int i = 0;
-        int j = 0;
-        while (i < BRICK_NUM_WIDTH)
+        // Tạo các bricks theo hai vòng tròn đồng tâm
+        for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
         {
-            j = 0;
-            while (j < BRICK_NUM_HEIGHT)
+            for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
             {
-                // Tính khoảng cách từ brick hiện tại đến tâm
-                float distance = sqrt((i - center_x) * (i - center_x) + (j - center_y) * (j - center_y));
-
-                // Kiểm tra xem brick có thuộc vào hình tròn không
+                float brick_center_x = i + 0.5;
+                float brick_center_y = j + 0.5;
+                float distance = sqrt((brick_center_x - center_x) * (brick_center_x - center_x) +
+                                      (brick_center_y - center_y) * (brick_center_y - center_y));
                 if (distance <= RADIUS_OUTER && distance >= RADIUS_INNER)
                 {
-                    // Gán màu sắc và trạng thái sống cho brick
                     bricks[i][j].color1 = rand() % 3;
                     bricks[i][j].color2 = rand() % 3;
                     bricks[i][j].isAlive = true;
                 }
                 else
                 {
-                    // Nếu không thuộc hình tròn, đặt trạng thái sống của brick là false
                     bricks[i][j].isAlive = false;
                 }
-
-                ++j;
             }
-            ++i;
         }
-      }
     }
+}
+
 };
 
 
