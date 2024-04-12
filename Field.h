@@ -50,15 +50,22 @@ struct Field
 
     brickTexture = IMG_LoadTexture(renderer, "Breakout_Tile_Free.png");
     sideTexture = IMG_LoadTexture(renderer, "side.png");
+    if (sideTexture == NULL) std::cerr << "Errorrside";
 
     x = 8;
     y = 0;
     width = SCREEN_WIDTH - 2 * x;
     height = SCREEN_HEIGHT;
 }
+~Field()
+   {
+        SDL_DestroyTexture(brickTexture);
+        SDL_DestroyTexture(sideTexture);
+    }
 
     void Render(int level)
 {
+
     SDL_Rect sourceRect;
     sourceRect.x = 0;
     sourceRect.y = 0;
@@ -68,6 +75,19 @@ struct Field
     SDL_Rect destinationRect;
     destinationRect.w = BRICK_WIDTH;
     destinationRect.h = BRICK_HEIGHT;
+    SDL_Rect sideRect;
+    sideRect.x = 0;                    // Bên trái
+    sideRect.y = 0;
+    sideRect.w = 8;
+    sideRect.h = 600;
+    SDL_RenderCopy(renderer, sideTexture, &sourceRect, &sideRect);
+
+    sideRect.x = SCREEN_WIDTH - 8;     // Bên phải
+    sideRect.y = 0;
+    sideRect.w = 8;
+    sideRect.h = 600;
+    SDL_RenderCopy(renderer, sideTexture, &sourceRect, &sideRect);
+
 
     // Vẽ các viên gạch
     if (level == 1) {
@@ -107,18 +127,9 @@ struct Field
     }
 
     // Vẽ các bên cạnh
-    SDL_Rect sideRect;
-    sideRect.x = 0;                    // Bên trái
-    sideRect.y = 0;
-    sideRect.w = 8;
-    sideRect.h = 600;
-    SDL_RenderCopy(renderer, sideTexture, &sourceRect, &sideRect);
 
-    sideRect.x = SCREEN_WIDTH - 8;     // Bên phải
-    sideRect.y = 0;
-    sideRect.w = 8;
-    sideRect.h = 600;
-    SDL_RenderCopy(renderer, sideTexture, &sourceRect, &sideRect);
+
+
 }
 
 void createBricks(int level)

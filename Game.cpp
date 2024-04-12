@@ -620,7 +620,8 @@ void Game::ShowHUD() {
 
         SDL_Rect lifeDestRect = {lifeTextureX, lifeTextureY, lifeTextureWidth, lifeTextureHeight};
         SDL_RenderCopy(renderer, lifeTexture, NULL, &lifeDestRect);
-    } else {
+    } else
+     {
         std::cerr << "Failed to render HUD!" << std::endl;
-    }
+     }
 }

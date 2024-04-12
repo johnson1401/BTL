@@ -318,7 +318,7 @@
 1711293937 source:c:\users\nmt\desktop\game clone\first-sdl-game-2.0\bandanglam\paddle.cpp
 	"Paddle.h"
 
-1712892083 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
+1712895019 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
 	"Game.h"
 	<math.h>
 
@@ -334,7 +334,7 @@
 	"Paddle.h"
 	"Ball.h"
 
-1712893631 c:\users\nmt\desktop\game clone\btl\ban up git\field.h
+1712895365 c:\users\nmt\desktop\game clone\btl\ban up git\field.h
 	"Game.h"
 	<stdlib.h>
 	<time.h>
