@@ -74,6 +74,11 @@ struct Game {
 
 
     void HandleKeyboardEvent(SDL_Event& event);
+
+
+    //score
+    SDL_Texture *scoreTexture = nullptr;
+    void UpdateScoreTexture();
 };
 
 #endif // GAME_H_INCLUDED

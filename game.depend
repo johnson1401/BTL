@@ -390,11 +390,11 @@
 1711357435 source:c:\users\nmt\desktop\game clone\btl\sua sap xep\main.cpp
 	"Game.h"
 
-1712849853 source:c:\users\nmt\desktop\game clone\btl\hiensapxep\game.cpp
+1712890882 source:c:\users\nmt\desktop\game clone\btl\hiensapxep\game.cpp
 	"Game.h"
 	<math.h>
 
-1712848173 c:\users\nmt\desktop\game clone\btl\hiensapxep\game.h
+1712889236 c:\users\nmt\desktop\game clone\btl\hiensapxep\game.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
