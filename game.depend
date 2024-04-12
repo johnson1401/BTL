@@ -346,10 +346,11 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1711356174 c:\users\nmt\desktop\game clone\btl\ban up git\ball.h
+1712892859 c:\users\nmt\desktop\game clone\btl\ban up git\ball.h
 	<SDL.h>
 	<SDL_image.h>
 	<cmath>
+	<bits/stdc++.h>
 
 1711357435 source:c:\users\nmt\desktop\game clone\btl\ban up git\main.cpp
 	"Game.h"
