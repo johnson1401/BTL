@@ -555,7 +555,7 @@ void Game::UpdateHUDTextures() {
     playerScore = destroyedBricks * 100;
     if (level == 2) playerScore -= 4400;
 
-    scoreText << "SCORE: " << playerScore << "                                                                                   LIFE: " << life;
+    scoreText << "SCORE: " << playerScore ;
 
     SDL_Surface *scoreSurface = TTF_RenderText_Solid(font, scoreText.str().c_str(), scoreColor);
 
