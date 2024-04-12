@@ -533,76 +533,7 @@ void Game::GameWin()
 }
 
 // score
-void Game::UpdateScoreTexture() {
-    // Create the text to display the score
-    std::stringstream textscore;
-    SDL_Color scoreColor = {0, 255, 255};
-     // Khởi tạo biến đếm số gạch và số gạch đã bị phá
-    int totalBricks = 0;
-    int destroyedBricks = 0;
 
-    // Đếm tổng số gạch và số gạch đã bị phá
-    for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
-    {
-        for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
-        {
-            if (field->bricks[i][j].isAlive)
-                totalBricks++;
-
-            if (!field->bricks[i][j].isAlive)
-                destroyedBricks++;
-        }
-    }
-
-    // Tính điểm số dựa trên số gạch đã bị phá
-    playerScore = destroyedBricks * 100;
-    if (level ==2) playerScore -= 4400;
-    textscore << "SCORE: " << playerScore << "                                                                                   LIFE: " << life;
-
-    // Render the text onto a surface
-    SDL_Surface *scoreSurface = TTF_RenderText_Solid(font, textscore.str().c_str(), scoreColor);
-
-    // Check if the surface was created successfully
-    if (scoreSurface == nullptr) {
-        std::cerr << "Failed to create score surface! SDL_ttf Error: " << TTF_GetError() << std::endl;
-        return;
-    }
-
-    // Destroy the previous score texture if it exists
-    if (scoreTexture != nullptr) {
-        SDL_DestroyTexture(scoreTexture);
-    }
-
-    // Create a texture from the surface
-    scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
-
-    // Free the surface memory
-    SDL_FreeSurface(scoreSurface);
-}
-
-
-void Game::ShowScore() {
-    // Kiểm tra xem có texture điểm số không
-    if (scoreTexture == nullptr) {
-        // Nếu chưa có, thì cập nhật texture điểm số
-        UpdateScoreTexture();
-    }
-
-    // Kiểm tra lại sau khi cập nhật
-    if (scoreTexture != nullptr) {
-        // Lấy kích thước của texture
-        int textureWidth, textureHeight;
-        SDL_QueryTexture(scoreTexture, NULL, NULL, &textureWidth, &textureHeight);
-
-        // Vị trí để vẽ texture (cạnh dưới, sát trái của background)
-        int textureX = 10; // X coordinate
-        int textureY = SCREEN_HEIGHT - textureHeight - 10; // Y coordinate
-
-        SDL_Rect destRect = {textureX, textureY, textureWidth, textureHeight};
-        SDL_RenderCopy(renderer, scoreTexture, NULL, &destRect);
-    }
-    else std::cerr<< "loiscoretexture" << std::endl;
-}
 void Game::UpdateHUDTextures() {
     // Update score texture
     std::stringstream scoreText;

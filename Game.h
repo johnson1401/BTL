@@ -41,9 +41,9 @@ struct Game {
     bool Ball_on_Paddle;
     bool isRunning = true;
 
-    int life = 1;
+
     int level = 2;
-    int playerScore = 0;
+
     int HitSpot;
 
     void Update(float delta);
@@ -63,11 +63,12 @@ struct Game {
     void SideCollision(int sidehit);
 
 
-    int BrickCount();
+
+
     void PlayMusic();
     void StopMusic();
     void PlaySoundEffect();
-    void ShowScore();
+
     void GameLost();
     void GameWin();
 
@@ -77,9 +78,12 @@ struct Game {
 
 
     //score
+    int BrickCount();
+    int playerScore = 0;
+    int life = 1;
     SDL_Texture *scoreTexture = nullptr;
     SDL_Texture *lifeTexture = nullptr;
-    void UpdateScoreTexture();
+
     void ShowHUD();
     void UpdateHUDTextures();
 };
