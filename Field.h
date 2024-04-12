@@ -29,23 +29,24 @@ const int RADIUS_INNER = 3;
 
 struct Brick
 {
-    int color1, color2; // Color
-    bool isAlive;       // Whether the brick is alive or dead
+    int color1, color2; // Màu sắc
+    bool isAlive;       // Trạng thái sống hoặc chết của viên gạch
 };
+
 
 struct Field
 {
-    float x, y, width, height;
+    float x, y, width, height; // Tọa độ và kích thước của lĩnh vực
 
-    Brick bricks[BRICK_NUM_WIDTH][BRICK_NUM_HEIGHT];
+    Brick bricks[BRICK_NUM_WIDTH][BRICK_NUM_HEIGHT]; // Mảng chứa thông tin của các viên gạch
 
-    SDL_Texture* brickTexture;
-    SDL_Texture* sideTexture;
-    SDL_Renderer* renderer;
+    SDL_Texture* brickTexture; // Texture của viên gạch
+    SDL_Texture* sideTexture; // Texture của các bên cạnh
+    SDL_Renderer* renderer; // Renderer
 
-   Field(SDL_Renderer* fieldRenderer)
+   Field(SDL_Renderer* rendererField)
 {
-    renderer = fieldRenderer;
+    renderer = rendererField;
 
     brickTexture = IMG_LoadTexture(renderer, "Breakout_Tile_Free.png");
     sideTexture = IMG_LoadTexture(renderer, "side.png");
@@ -68,7 +69,7 @@ struct Field
     destinationRect.w = BRICK_WIDTH;
     destinationRect.h = BRICK_HEIGHT;
 
-    // Render bricks
+    // Vẽ các viên gạch
     if (level == 1) {
         for (int i = 0; i < BRICK_NUM_WIDTH; ++i) {
             for (int j = 0; j < BRICK_NUM_HEIGHT; ++j) {
@@ -83,7 +84,7 @@ struct Field
         }
     }
     else if (level == 2) {
-        float radius = RADIUS_OUTER * BRICK_WIDTH; // Convert the radius to pixel units
+        float radius = RADIUS_OUTER * BRICK_WIDTH; // Chuyển đổi bán kính sang đơn vị pixel
         float center_x_pixel = center_x * BRICK_WIDTH + x;
         float center_y_pixel = center_y * BRICK_HEIGHT + y;
 
@@ -105,43 +106,41 @@ struct Field
         }
     }
 
-    // Render sides
+    // Vẽ các bên cạnh
     SDL_Rect sideRect;
-    sideRect.x = 0;                    // Left
+    sideRect.x = 0;                    // Bên trái
     sideRect.y = 0;
     sideRect.w = 8;
     sideRect.h = 600;
     SDL_RenderCopy(renderer, sideTexture, &sourceRect, &sideRect);
 
-    sideRect.x = SCREEN_WIDTH - 8;     // Right
+    sideRect.x = SCREEN_WIDTH - 8;     // Bên phải
     sideRect.y = 0;
     sideRect.w = 8;
     sideRect.h = 600;
     SDL_RenderCopy(renderer, sideTexture, &sourceRect, &sideRect);
 }
 
-
-
 void createBricks(int level)
 {
-    srand(time(0)); // Randomizer
+    srand(time(0)); // Bộ ngẫu nhiên
 
     if (level == 1)
     {
-        // Tạo các bricks theo hình chữ nhật
+        // Tạo các viên gạch theo hình chữ nhật
         for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
         {
             for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
             {
                 bricks[i][j].color1 = rand() % 3;
-                bricks[i][j].color2 = rand() % 3; // Random color
-                bricks[i][j].isAlive = true;      // Brick is alive
+                bricks[i][j].color2 = rand() % 3; // Màu ngẫu nhiên
+                bricks[i][j].isAlive = true;      // Viên gạch còn sống
             }
         }
     }
     else if (level == 2)
     {
-        // Tạo các bricks theo hai vòng tròn đồng tâm
+        // Tạo các viên gạch theo hai vòng tròn đồng tâm
         for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
         {
             for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
@@ -166,6 +165,5 @@ void createBricks(int level)
 }
 
 };
-
 
 #endif // FIELD_H_INCLUDED
