@@ -241,7 +241,7 @@ void Game::Update(float delta)
     {
         ball->Update(delta);
     }
-    UpdateScoreTexture();
+    UpdateHUDTextures();
 
 }
 void Game::Render()
@@ -252,7 +252,7 @@ void Game::Render()
     paddle->Render();
     ball->Render();
 
-    ShowScore(); // Chỉ gọi ShowScore() một lần sau khi đã gọi UpdateScoreTexture()
+    ShowHUD(); // Chỉ gọi ShowScore() một lần sau khi đã gọi UpdateScoreTexture()
 
     SDL_RenderPresent(renderer);
 }
@@ -602,4 +602,94 @@ void Game::ShowScore() {
         SDL_RenderCopy(renderer, scoreTexture, NULL, &destRect);
     }
     else std::cerr<< "loiscoretexture" << std::endl;
+}
+void Game::UpdateHUDTextures() {
+    // Update score texture
+    std::stringstream scoreText;
+    SDL_Color scoreColor = {0, 255, 255}; // Màu xanh dương cho điểm số
+
+    int totalBricks = 0;
+    int destroyedBricks = 0;
+
+    for (int i = 0; i < BRICK_NUM_WIDTH; ++i) {
+        for (int j = 0; j < BRICK_NUM_HEIGHT; ++j) {
+            if (field->bricks[i][j].isAlive)
+                totalBricks++;
+
+            if (!field->bricks[i][j].isAlive)
+                destroyedBricks++;
+        }
+    }
+
+    playerScore = destroyedBricks * 100;
+    if (level == 2) playerScore -= 4400;
+
+    scoreText << "SCORE: " << playerScore << "                                                                                   LIFE: " << life;
+
+    SDL_Surface *scoreSurface = TTF_RenderText_Solid(font, scoreText.str().c_str(), scoreColor);
+
+    if (scoreSurface == nullptr) {
+        std::cerr << "Failed to create score surface! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        return;
+    }
+
+    if (scoreTexture != nullptr) {
+        SDL_DestroyTexture(scoreTexture);
+    }
+
+    scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
+    SDL_FreeSurface(scoreSurface);
+
+    // Update life texture
+    std::stringstream lifeText;
+    SDL_Color lifeColor = {255, 0, 0}; // Màu đỏ cho mạng số lượt chơi
+
+    lifeText << "LIFE: " << life;
+
+    SDL_Surface *lifeSurface = TTF_RenderText_Solid(font, lifeText.str().c_str(), lifeColor);
+
+    if (lifeSurface == nullptr) {
+        std::cerr << "Failed to create life surface! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        return;
+    }
+
+    if (lifeTexture != nullptr) {
+        SDL_DestroyTexture(lifeTexture);
+    }
+
+    lifeTexture = SDL_CreateTextureFromSurface(renderer, lifeSurface);
+    SDL_FreeSurface(lifeSurface);
+}
+void Game::ShowHUD() {
+    // Kiểm tra xem texture điểm số và mạng số lượt chơi đã được cập nhật chưa
+    if (scoreTexture == nullptr || lifeTexture == nullptr) {
+        // Nếu chưa, cập nhật texture điểm số và mạng số lượt chơi
+        UpdateHUDTextures();
+    }
+
+    // Kiểm tra lại sau khi cập nhật
+    if (scoreTexture != nullptr && lifeTexture != nullptr) {
+        // Lấy kích thước của texture điểm số và mạng số lượt chơi
+        int scoreTextureWidth, scoreTextureHeight;
+        SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreTextureWidth, &scoreTextureHeight);
+
+        int lifeTextureWidth, lifeTextureHeight;
+        SDL_QueryTexture(lifeTexture, NULL, NULL, &lifeTextureWidth, &lifeTextureHeight);
+
+        // Vị trí để vẽ texture điểm số và mạng số lượt chơi
+        int scoreTextureX = 10; // X coordinate
+        int scoreTextureY = SCREEN_HEIGHT - scoreTextureHeight - 10; // Y coordinate
+
+        int lifeTextureX = SCREEN_WIDTH - lifeTextureWidth - 10; // X coordinate
+        int lifeTextureY = SCREEN_HEIGHT - lifeTextureHeight - 10; // Y coordinate
+
+        // Vẽ texture điểm số và mạng số lượt chơi lên màn hình
+        SDL_Rect scoreDestRect = {scoreTextureX, scoreTextureY, scoreTextureWidth, scoreTextureHeight};
+        SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreDestRect);
+
+        SDL_Rect lifeDestRect = {lifeTextureX, lifeTextureY, lifeTextureWidth, lifeTextureHeight};
+        SDL_RenderCopy(renderer, lifeTexture, NULL, &lifeDestRect);
+    } else {
+        std::cerr << "Failed to render HUD!" << std::endl;
+    }
 }

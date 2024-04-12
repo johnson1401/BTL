@@ -78,7 +78,10 @@ struct Game {
 
     //score
     SDL_Texture *scoreTexture = nullptr;
+    SDL_Texture *lifeTexture = nullptr;
     void UpdateScoreTexture();
+    void ShowHUD();
+    void UpdateHUDTextures();
 };
 
 #endif // GAME_H_INCLUDED
