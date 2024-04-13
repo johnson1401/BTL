@@ -21,17 +21,17 @@ struct Paddle
 
     if (PaddleTexture == nullptr)
     {
-        // 
+        //
         // Xu li loi by chat gpt, bth ngta dung cerr
         SDL_Log("Failed to load paddle texture: %s", SDL_GetError());
         }
     }
 
 
-    ~Paddle()n // ham huy
+    ~Paddle() // ham huy
      {
         // Clean resources
-        if (PaddleTexture != nullptr) 
+        if (PaddleTexture != nullptr)
         {
             SDL_DestroyTexture(PaddleTexture);
         }
