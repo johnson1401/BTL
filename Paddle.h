@@ -48,22 +48,27 @@ struct Paddle
     }
 
     // Move left
-    void MoveLeft() {
+    void MoveLeft()
+    {
         movingLeft = true;
     }
 
     // Stop moving left
-    void StopMovingLeft() {
+    void StopMovingLeft()
+    {
         movingLeft = false;
     }
 
     // Move right
-    void MoveRight() {
+    void MoveRight()
+    {
         movingRight = true;
     }
 
     // Stop moving right
-    void StopMovingRight() {
+    void StopMovingRight()
+    {
+
         movingRight = false;
     }
 
