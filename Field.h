@@ -10,7 +10,7 @@
 #include <bits/stdc++.h>
 
 
-const int SCREEN_WIDTH = 1072;
+const int SCREEN_WIDTH = 1080;
 const int SCREEN_HEIGHT = 600;
 
 // Dimension of the brick
