@@ -29,19 +29,19 @@ const int RADIUS_INNER = 3;
 
 struct Brick
 {
-    int color1, color2; // Màu sắc
-    bool isAlive;       // Trạng thái sống hoặc chết của viên gạch
+    int color1, color2; // Mau sac
+    bool isAlive;       // Gach duoc render hay k
 };
 
 
 struct Field
 {
-    float x, y, width, height; // Tọa độ và kích thước của lĩnh vực
+    float x, y, width, height; // Toa do, kich thuoc field
 
-    Brick bricks[BRICK_NUM_WIDTH][BRICK_NUM_HEIGHT]; // Mảng chứa thông tin của các viên gạch
+    Brick bricks[BRICK_NUM_WIDTH][BRICK_NUM_HEIGHT]; // Mang de render brick
 
-    SDL_Texture* brickTexture; // Texture của viên gạch
-    SDL_Texture* sideTexture; // Texture của các bên cạnh
+    SDL_Texture* brickTexture; // 
+    SDL_Texture* sideTexture; // T
     SDL_Renderer* renderer; // Renderer
 
    Field(SDL_Renderer* rendererField)
@@ -76,24 +76,27 @@ struct Field
     destinationRect.w = BRICK_WIDTH;
     destinationRect.h = BRICK_HEIGHT;
     SDL_Rect sideRect;
-    sideRect.x = 0;                    // Bên trái
+    sideRect.x = 0;                    // Left
     sideRect.y = 0;
     sideRect.w = 8;
     sideRect.h = 600;
     SDL_RenderCopy(renderer, sideTexture, &sourceRect, &sideRect);
 
-    sideRect.x = SCREEN_WIDTH - 8;     // Bên phải
+    sideRect.x = SCREEN_WIDTH - 8;     // Rhight
     sideRect.y = 0;
     sideRect.w = 8;
     sideRect.h = 600;
     SDL_RenderCopy(renderer, sideTexture, &sourceRect, &sideRect);
 
 
-    // Vẽ các viên gạch
+    // Render
     if (level == 1) {
-        for (int i = 0; i < BRICK_NUM_WIDTH; ++i) {
-            for (int j = 0; j < BRICK_NUM_HEIGHT; ++j) {
-                if (bricks[i][j].isAlive) {
+        for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
+         {
+            for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
+            {
+                if (bricks[i][j].isAlive) 
+                {
                     sourceRect.x = bricks[i][j].color1 * 380;
                     sourceRect.y = bricks[i][j].color2 * 125;
                     destinationRect.x = x + i * BRICK_WIDTH;
@@ -103,19 +106,22 @@ struct Field
             }
         }
     }
-    else if (level == 2) {
-        float radius = RADIUS_OUTER * BRICK_WIDTH; // Chuyển đổi bán kính sang đơn vị pixel
+    else if (level == 2) 
+    {
+        float radius = RADIUS_OUTER * BRICK_WIDTH; // Doi ban kinh sang pixel
         float center_x_pixel = center_x * BRICK_WIDTH + x;
         float center_y_pixel = center_y * BRICK_HEIGHT + y;
 
-        for (int i = 0; i < BRICK_NUM_WIDTH; ++i) {
-            for (int j = 0; j < BRICK_NUM_HEIGHT; ++j) {
+        for (int i = 0; i < BRICK_NUM_WIDTH; ++i) 
+        {
+            for (int j = 0; j < BRICK_NUM_HEIGHT; ++j) 
+            {
                 float brick_center_x = (i + 0.5) * BRICK_WIDTH + x;
                 float brick_center_y = (j + 0.5) * BRICK_HEIGHT + y;
-                float distance = sqrt((brick_center_x - center_x_pixel) * (brick_center_x - center_x_pixel) +
-                                      (brick_center_y - center_y_pixel) * (brick_center_y - center_y_pixel));
+                float distance = sqrt((brick_center_x - center_x_pixel) * (brick_center_x - center_x_pixel) + (brick_center_y - center_y_pixel) * (brick_center_y - center_y_pixel));
 
-                if (distance <= radius && bricks[i][j].isAlive) {
+                if (distance <= radius && bricks[i][j].isAlive) 
+                {
                     sourceRect.x = bricks[i][j].color1 * 380;
                     sourceRect.y = bricks[i][j].color2 * 125;
                     destinationRect.x = x + i * BRICK_WIDTH;
@@ -126,7 +132,7 @@ struct Field
         }
     }
 
-    // Vẽ các bên cạnh
+    
 
 
 
@@ -134,24 +140,24 @@ struct Field
 
 void createBricks(int level)
 {
-    srand(time(0)); // Bộ ngẫu nhiên
+    srand(time(0)); // Reset lich su
 
     if (level == 1)
     {
-        // Tạo các viên gạch theo hình chữ nhật
+        // Tao hcn
         for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
         {
             for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
             {
                 bricks[i][j].color1 = rand() % 3;
-                bricks[i][j].color2 = rand() % 3; // Màu ngẫu nhiên
-                bricks[i][j].isAlive = true;      // Viên gạch còn sống
+                bricks[i][j].color2 = rand() % 3; // 
+                bricks[i][j].isAlive = true;      // 
             }
         }
     }
     else if (level == 2)
     {
-        // Tạo các viên gạch theo hai vòng tròn đồng tâm
+        // Hinh khac
         for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
         {
             for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
