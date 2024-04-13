@@ -7,7 +7,8 @@
 struct Paddle
 {
 
-  Paddle(SDL_Renderer* renderer) : renderer(renderer) {
+  Paddle(SDL_Renderer* renderer) : renderer(renderer) // khoi tao (chat gpt)
+  {
       width = 108;
       height = 24;
       x = 0;
@@ -18,22 +19,26 @@ struct Paddle
       movingRight = false ;
       PaddleTexture= IMG_LoadTexture(renderer, "PaddleRed.png");
 
-    if (PaddleTexture == nullptr) {
-        // Xử lý lỗi nếu không tải được texture
-        // Ví dụ: đóng ứng dụng hoặc ghi ra console
+    if (PaddleTexture == nullptr)
+    {
+        // 
+        // Xu li loi by chat gpt, bth ngta dung cerr
         SDL_Log("Failed to load paddle texture: %s", SDL_GetError());
         }
     }
 
 
-    ~Paddle() {
+    ~Paddle()n // ham huy
+     {
         // Clean resources
-        if (PaddleTexture != nullptr) {
+        if (PaddleTexture != nullptr) 
+        {
             SDL_DestroyTexture(PaddleTexture);
         }
     }
 
-    void Render() {
+    void Render()
+     {
         SDL_Rect paddlerect;
         paddlerect.x = x;
         paddlerect.y = y;
