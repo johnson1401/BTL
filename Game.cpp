@@ -611,7 +611,7 @@ void Game::ShowHUD() {
         int scoreTextureX = 10; // X coordinate
         int scoreTextureY = SCREEN_HEIGHT - scoreTextureHeight - 10; // Y coordinate
 
-        int lifeTextureX = SCREEN_WIDTH - lifeTextureWidth - 10; // X coordinate
+        int lifeTextureX = SCREEN_WIDTH - lifeTextureWidth - 15; // X coordinate
         int lifeTextureY = SCREEN_HEIGHT - lifeTextureHeight - 10; // Y coordinate
 
         // Vẽ texture điểm số và mạng số lượt chơi lên màn hình
