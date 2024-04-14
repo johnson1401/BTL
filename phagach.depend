@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1711357435 source:c:\users\nmt\desktop\game clone\btl\ban up git\main.cpp
+	"Game.h"
+
+1712891944 c:\users\nmt\desktop\game clone\btl\ban up git\game.h
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+	<iostream>
+	<stdio.h>
+	<sstream>
+	"Field.h"
+	"Paddle.h"
+	"Ball.h"
+
+1713018176 c:\users\nmt\desktop\game clone\btl\ban up git\field.h
+	"Game.h"
+	<stdlib.h>
+	<time.h>
+	<SDL.h>
+	<SDL_image.h>
+	<bits/stdc++.h>
+
+1713018811 c:\users\nmt\desktop\game clone\btl\ban up git\paddle.h
+	<SDL.h>
+	<SDL_image.h>
+
+1712892859 c:\users\nmt\desktop\game clone\btl\ban up git\ball.h
+	<SDL.h>
+	<SDL_image.h>
+	<cmath>
+	<bits/stdc++.h>
+
+1713018577 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
+	"Game.h"
+	<math.h>
+
