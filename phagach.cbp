@@ -36,6 +36,7 @@
 		<Unit filename="Field.h" />
 		<Unit filename="Game.cpp" />
 		<Unit filename="Game.h" />
+		<Unit filename="Menu.h" />
 		<Unit filename="Paddle.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>

@@ -39,7 +39,7 @@ struct Game {
     Paddle* paddle;
     Ball* ball;
     bool Ball_on_Paddle;
-    bool isRunning = true;
+    bool isRunning = false;
 
 
     int level = 2;

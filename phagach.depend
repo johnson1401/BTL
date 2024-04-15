@@ -2,7 +2,7 @@
 1711357435 source:c:\users\nmt\desktop\game clone\btl\ban up git\main.cpp
 	"Game.h"
 
-1712891944 c:\users\nmt\desktop\game clone\btl\ban up git\game.h
+1713196670 c:\users\nmt\desktop\game clone\btl\ban up git\game.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -32,7 +32,60 @@
 	<cmath>
 	<bits/stdc++.h>
 
-1713018577 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
+1713196686 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
 	"Game.h"
 	<math.h>
+	"Menu.h"
+
+1711357435 source:c:\users\nmt\desktop\game clone\btl\menu\main.cpp
+	"Game.h"
+
+1713196670 c:\users\nmt\desktop\game clone\btl\menu\game.h
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+	<iostream>
+	<stdio.h>
+	<sstream>
+	"Field.h"
+	"Paddle.h"
+	"Ball.h"
+
+1713018176 c:\users\nmt\desktop\game clone\btl\menu\field.h
+	"Game.h"
+	<stdlib.h>
+	<time.h>
+	<SDL.h>
+	<SDL_image.h>
+	<bits/stdc++.h>
+
+1713018811 c:\users\nmt\desktop\game clone\btl\menu\paddle.h
+	<SDL.h>
+	<SDL_image.h>
+
+1712892859 c:\users\nmt\desktop\game clone\btl\menu\ball.h
+	<SDL.h>
+	<SDL_image.h>
+	<cmath>
+	<bits/stdc++.h>
+
+1713196686 source:c:\users\nmt\desktop\game clone\btl\menu\game.cpp
+	"Game.h"
+	<math.h>
+	"Menu.h"
+
+1713196279 c:\users\nmt\desktop\game clone\btl\menu\menu.h
+	<iostream>
+	<SDL.h>
+	<SDL_ttf.h>
+	<SDL_image.h>
+	"Game.h"
+
+1713196910 c:\users\nmt\desktop\game clone\btl\ban up git\menu.h
+	<iostream>
+	<SDL.h>
+	<SDL_ttf.h>
+	<SDL_image.h>
+	"Game.h"
 

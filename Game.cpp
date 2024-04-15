@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <math.h>
+#include "Menu.h"
 
 
 
@@ -116,7 +117,34 @@ void Game::Run() //How the game works
     paddle = new Paddle(renderer);
     ball = new Ball(renderer);
 
-    StartGame();
+    Menu* menu = new Menu(renderer);
+    menu->InitMenu();
+    menu->RenderMenu();
+    while (!isRunning) {
+        // Handle events for the menu
+        SDL_Event e;
+        if (SDL_PollEvent(&e)) {
+            if (e.type == SDL_QUIT) {
+                isRunning = false;
+                CleanUp();
+            } else if (e.type == SDL_MOUSEBUTTONDOWN) {
+                menu->HandleMouseClick(e);
+                if (!menu->IsMenuActive()) {
+                    isRunning = true; // Start the game loop if menu is no longer active
+                }
+            }
+        }
+
+        SDL_Delay(10); // Delay frame rates
+    }
+
+    // Clean up menu after exiting loop
+    delete menu;
+
+
+
+
+    if (isRunning) StartGame();
 
     // Game loop
     while (1)
