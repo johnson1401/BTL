@@ -73,14 +73,14 @@ struct Menu {
             SDL_GetMouseState(&mouseX, &mouseY);
 
             // Check if the mouse click is within specified ranges
-            if (mouseX >= 100 && mouseX <= 400 && mouseY >= 100 && mouseY <= 200)
+            if (mouseX >= 100 && mouseX <= 300 && mouseY >= 100 && mouseY <= 200)
             {
                 // Start the game
                 isRunning = true;
                 showMenu = false;
                 return;
             }
-            else if (mouseX >= 100 && mouseX <= 400 && mouseY >= 290 && mouseY <= 400)
+            else if (mouseX >= 100 && mouseX <= 200 && mouseY >= 290 && mouseY <= 400)
             {
                 // Stop the game
                 isRunning = false;
