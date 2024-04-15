@@ -45,9 +45,9 @@ struct Menu {
 
         // Load and set color for menu texture
         SDL_Color textColor = {255, 255, 255};
-        menuTexture = SDL_CreateTextureFromSurface(grenderer, TTF_RenderText_Solid(font, "Brick Breaker", textColor));
+        menuTexture = SDL_CreateTextureFromSurface(grenderer, TTF_RenderText_Solid(font, "Pha gach", textColor));
 
-        // Set menu position and dimensions
+
 
 
         // Load background texture from PNG
@@ -95,6 +95,7 @@ struct Menu {
                 // Stop the game
                 isRunning = false;
                 showMenu = true;
+                SDL_Quit();
 
                 return;
             }
