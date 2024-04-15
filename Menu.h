@@ -13,11 +13,11 @@ struct Menu {
 
 
     TTF_Font* font;
-    SDL_Texture* menuTexture;
+   // SDL_Texture* menuTexture;
 
 
     SDL_Texture* backgroundTexture;
-    SDL_Rect menuRect;
+   // SDL_Rect menuRect;
 
     bool showMenu;
     bool isRunning;
@@ -32,17 +32,17 @@ struct Menu {
 
     void InitMenu() {
         // Initialize font
-        if (TTF_Init() == -1) {
-            std::cerr << "Failed to initialize SDL_ttf" << std::endl;
-        }
-        font = TTF_OpenFont("font.ttf", 24);
-        if (font == nullptr) {
-            std::cerr << "Failed to load font" << std::endl;
-        }
+      //  if (TTF_Init() == -1) {
+     //       std::cerr << "Failed to initialize SDL_ttf" << std::endl;
+     //   }
+     //   font = TTF_OpenFont("font.ttf", 24);
+     //   if (font == nullptr) {
+      //      std::cerr << "Failed to load font" << std::endl;
+      //  }
 
         // Load and set color for menu texture
-        SDL_Color textColor = {255, 255, 255};
-        menuTexture = SDL_CreateTextureFromSurface(grenderer, TTF_RenderText_Solid(font, "Pha gach", textColor));
+      //  SDL_Color textColor = {255, 255, 255};
+     //   menuTexture = SDL_CreateTextureFromSurface(grenderer, TTF_RenderText_Solid(font, "Pha gach", textColor));
 
 
 

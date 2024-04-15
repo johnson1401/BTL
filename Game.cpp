@@ -134,6 +134,8 @@ void Game::Run() //How the game works
                 }
             }
         }
+        if (isRunning) StartGame();
+
 
         SDL_Delay(10); // Delay frame rates
     }
@@ -144,7 +146,7 @@ void Game::Run() //How the game works
 
 
 
-    if (isRunning) StartGame();
+
 
     // Game loop
     while (1)
@@ -280,7 +282,7 @@ void Game::Render()
     paddle->Render();
     ball->Render();
 
-    ShowHUD(); // Chỉ gọi ShowScore() một lần sau khi đã gọi UpdateScoreTexture()
+    ShowHUD(); // showscore
 
     SDL_RenderPresent(renderer);
 }
