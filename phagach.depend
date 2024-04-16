@@ -32,7 +32,7 @@
 	<cmath>
 	<bits/stdc++.h>
 
-1713198626 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
+1713279837 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
 	"Game.h"
 	<math.h>
 	"Menu.h"
@@ -82,7 +82,7 @@
 	<SDL_image.h>
 	"Game.h"
 
-1713198575 c:\users\nmt\desktop\game clone\btl\ban up git\menu.h
+1713199508 c:\users\nmt\desktop\game clone\btl\ban up git\menu.h
 	<iostream>
 	<SDL.h>
 	<SDL_ttf.h>

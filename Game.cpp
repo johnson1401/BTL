@@ -168,7 +168,7 @@ void Game::Run() //How the game works
 
         // delta timing
         curframe = SDL_GetTicks();
-        float delta = (curframe - lastframe) / 1000.0f;
+        float delta = (curframe - lastframe) / 800.0f;
         lastframe = curframe;
 
         // Update and render the game
