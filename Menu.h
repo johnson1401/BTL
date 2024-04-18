@@ -64,24 +64,7 @@ struct Menu {
         SDL_RenderCopy(grenderer, backgroundTexture, NULL, NULL);
         SDL_RenderPresent(grenderer);
     }
-    void level(int &level1)
-    {
-        int mouseX1, mouseY1;
-        SDL_GetMouseState(&mouseX1, &mouseY1);
 
-        levelTexture = IMG_LoadTexture(grenderer,"menukinhdi1.png");
-        SDL_RenderCopy(grenderer, levelTexture, NULL, NULL);
-        SDL_RenderPresent(grenderer);
-
-         if (mouseX1 >= 400 && mouseX1 <= 560 && mouseY1 >= 155 && mouseY1 <= 217)
-            {
-                level1 = 1;
-
-
-            }
-
-
-    }
 
 
     void HandleMouseClick(SDL_Event& event, int &level1)
@@ -113,8 +96,16 @@ struct Menu {
             }
             else if( mouseX >= 130 && mouseX <= 250 && mouseY >= 240 && mouseY <= 300)
             {
-                SDL_RenderClear(grenderer);
-                level(level1);
+                levelTexture = IMG_LoadTexture(grenderer,"menukinhdi1.png");
+            SDL_RenderCopy(grenderer, levelTexture, NULL, NULL);
+            SDL_RenderPresent(grenderer);
+
+            if (mouseX >= 400 && mouseX <= 560 && mouseY >= 155 && mouseY <= 217)
+                {
+                level1 = 1;
+
+
+                }
 
             }
         }
