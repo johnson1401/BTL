@@ -128,7 +128,7 @@ void Game::Run() //How the game works
                 isRunning = false;
                 CleanUp();
             } else if (e.type == SDL_MOUSEBUTTONDOWN) {
-                menu->HandleMouseClick(e);
+                menu->HandleMouseClick(e,level);
                 if (!menu->showMenu) {
                     isRunning = true; // Start the game loop if menu is no longer active
                 }

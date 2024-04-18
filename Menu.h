@@ -17,6 +17,7 @@ struct Menu {
 
 
     SDL_Texture* backgroundTexture;
+    SDL_Texture* levelTexture;
    // SDL_Rect menuRect;
 
     bool showMenu;
@@ -48,7 +49,7 @@ struct Menu {
 
 
         // Load background texture from PNG
-        backgroundTexture = IMG_LoadTexture(grenderer,"menukinhdi1.png");
+        backgroundTexture = IMG_LoadTexture(grenderer,"menukinhdi2.png");
         if (backgroundTexture == nullptr)
         {
             std::cerr << "Failed to load menu background image" << std::endl;
@@ -63,9 +64,17 @@ struct Menu {
         SDL_RenderCopy(grenderer, backgroundTexture, NULL, NULL);
         SDL_RenderPresent(grenderer);
     }
+    void level(int &level)
+    {
+        levelTexture = IMG_LoadTexture(grenderer,"menukinhdi1.png");
+        SDL_RenderCopy(grenderer, levelTexture, NULL, NULL);
+        SDL_RenderPresent(grenderer);
 
 
-    void HandleMouseClick(SDL_Event& event)
+    }
+
+
+    void HandleMouseClick(SDL_Event& event, int &level1)
     {
         if (event.type == SDL_MOUSEBUTTONDOWN)
         {
@@ -73,14 +82,14 @@ struct Menu {
             SDL_GetMouseState(&mouseX, &mouseY);
 
             // Check if the mouse click is within specified ranges
-            if (mouseX >= 100 && mouseX <= 300 && mouseY >= 100 && mouseY <= 200)
+            if (mouseX >= 130 && mouseX <= 250 && mouseY >= 130 && mouseY <= 200)
             {
                 // Start the game
                 isRunning = true;
                 showMenu = false;
                 return;
             }
-            else if (mouseX >= 100 && mouseX <= 200 && mouseY >= 290 && mouseY <= 400)
+            else if (mouseX >= 130 && mouseX <= 250 && mouseY >= 350 && mouseY <= 400)
             {
                 // Stop the game
                 isRunning = false;
@@ -89,15 +98,14 @@ struct Menu {
 
                 return;
             }
+            else if( mouseX >= 130 && mouseX <= 250 && mouseY >= 240 && mouseY <= 300)
+            {
+                level(level1);
+            }
         }
     }
 
-    void UpdateMenu(SDL_Event& event)
-    {
 
-        // Handle mouse events
-        HandleMouseClick(event);
-    }
 };
 
 #endif // MENU_H_INCLUDED
