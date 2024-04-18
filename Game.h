@@ -42,7 +42,7 @@ struct Game {
     bool isRunning = false;
 
 
-    int level = 1;
+    int level = 2;
 
     int HitSpot;
 

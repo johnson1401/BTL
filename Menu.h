@@ -64,11 +64,21 @@ struct Menu {
         SDL_RenderCopy(grenderer, backgroundTexture, NULL, NULL);
         SDL_RenderPresent(grenderer);
     }
-    void level(int &level)
+    void level(int &level1)
     {
+        int mouseX1, mouseY1;
+        SDL_GetMouseState(&mouseX1, &mouseY1);
+
         levelTexture = IMG_LoadTexture(grenderer,"menukinhdi1.png");
         SDL_RenderCopy(grenderer, levelTexture, NULL, NULL);
         SDL_RenderPresent(grenderer);
+
+         if (mouseX1 >= 400 && mouseX1 <= 560 && mouseY1 >= 155 && mouseY1 <= 217)
+            {
+                level1 = 1;
+
+
+            }
 
 
     }
@@ -78,8 +88,10 @@ struct Menu {
     {
         if (event.type == SDL_MOUSEBUTTONDOWN)
         {
+
             int mouseX, mouseY;
             SDL_GetMouseState(&mouseX, &mouseY);
+             std::cerr << mouseX << " " << mouseY <<std::endl << level1;
 
             // Check if the mouse click is within specified ranges
             if (mouseX >= 130 && mouseX <= 250 && mouseY >= 130 && mouseY <= 200)
@@ -94,13 +106,16 @@ struct Menu {
                 // Stop the game
                 isRunning = false;
                 showMenu = true;
+
                 SDL_Quit();
 
                 return;
             }
             else if( mouseX >= 130 && mouseX <= 250 && mouseY >= 240 && mouseY <= 300)
             {
+                SDL_RenderClear(grenderer);
                 level(level1);
+
             }
         }
     }
