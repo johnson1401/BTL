@@ -22,6 +22,8 @@ struct Menu {
 
     bool showMenu;
     bool isRunning;
+    bool quit = false;
+
 
     Menu(SDL_Renderer* menurenderer)
     {
@@ -88,7 +90,7 @@ struct Menu {
             {
                 // Stop the game
                 isRunning = false;
-                showMenu = true;
+                quit = true;
 
                 SDL_Quit();
 
@@ -103,10 +105,18 @@ struct Menu {
 
 
 
-            else if (mouseX >= 380 && mouseX <= 538 && mouseY >=160 && mouseY <= 210)
+            if (mouseX >= 387 && mouseX <= 611 && mouseY >=132 && mouseY <= 200)
                 {
                 level1 = 1;
                 }
+            if (mouseX >= 391 && mouseX <= 614 && mouseY >=249 && mouseY <= 305 )
+            {
+                level1 = 2;
+            }
+            if (mouseX >= 398 && mouseX <= 624 && mouseY >=352&& mouseY <=453)
+            {
+                level1 = 3;
+            }
 
 
         }

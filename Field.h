@@ -40,7 +40,7 @@ struct Field
 
     Brick bricks[BRICK_NUM_WIDTH][BRICK_NUM_HEIGHT]; // Mang de render brick
 
-    SDL_Texture* brickTexture; // 
+    SDL_Texture* brickTexture; //
     SDL_Texture* sideTexture; // T
     SDL_Renderer* renderer; // Renderer
 
@@ -90,12 +90,13 @@ struct Field
 
 
     // Render
-    if (level == 1) {
+    if (level == 2)
+    {
         for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
          {
             for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
             {
-                if (bricks[i][j].isAlive) 
+                if (bricks[i][j].isAlive)
                 {
                     sourceRect.x = bricks[i][j].color1 * 380;
                     sourceRect.y = bricks[i][j].color2 * 125;
@@ -106,21 +107,21 @@ struct Field
             }
         }
     }
-    else if (level == 2) 
+    else if (level == 3)
     {
         float radius = RADIUS_OUTER * BRICK_WIDTH; // Doi ban kinh sang pixel
         float center_x_pixel = center_x * BRICK_WIDTH + x;
         float center_y_pixel = center_y * BRICK_HEIGHT + y;
 
-        for (int i = 0; i < BRICK_NUM_WIDTH; ++i) 
+        for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
         {
-            for (int j = 0; j < BRICK_NUM_HEIGHT; ++j) 
+            for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
             {
                 float brick_center_x = (i + 0.5) * BRICK_WIDTH + x;
                 float brick_center_y = (j + 0.5) * BRICK_HEIGHT + y;
                 float distance = sqrt((brick_center_x - center_x_pixel) * (brick_center_x - center_x_pixel) + (brick_center_y - center_y_pixel) * (brick_center_y - center_y_pixel));
 
-                if (distance <= radius && bricks[i][j].isAlive) 
+                if (distance <= radius && bricks[i][j].isAlive)
                 {
                     sourceRect.x = bricks[i][j].color1 * 380;
                     sourceRect.y = bricks[i][j].color2 * 125;
@@ -131,8 +132,26 @@ struct Field
             }
         }
     }
+    else if (level == 1)
+    {
+        for (int i = 0; i < BRICK_NUM_WIDTH; i++)
+         {
+            for (int j = 0; j < BRICK_NUM_HEIGHT; j+=2)
+            {
+                if (bricks[i][j].isAlive)
+                {
+                    sourceRect.x = bricks[i][j].color1 * 380;
+                    sourceRect.y = bricks[i][j].color2 * 125;
+                    destinationRect.x = x + i * BRICK_WIDTH;
+                    destinationRect.y = y + j * BRICK_HEIGHT;
+                    SDL_RenderCopy(renderer, brickTexture, &sourceRect, &destinationRect);
+                }
+            }
+        }
 
-    
+    }
+
+
 
 
 
@@ -142,7 +161,7 @@ void createBricks(int level)
 {
     srand(time(0)); // Reset lich su
 
-    if (level == 1)
+    if (level == 2)
     {
         // Tao hcn
         for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
@@ -150,12 +169,12 @@ void createBricks(int level)
             for (int j = 0; j < BRICK_NUM_HEIGHT; ++j)
             {
                 bricks[i][j].color1 = rand() % 3;
-                bricks[i][j].color2 = rand() % 3; // 
-                bricks[i][j].isAlive = true;      // 
+                bricks[i][j].color2 = rand() % 3; //
+                bricks[i][j].isAlive = true;      //
             }
         }
     }
-    else if (level == 2)
+    else if (level == 3)
     {
         // Hinh khac
         for (int i = 0; i < BRICK_NUM_WIDTH; ++i)
@@ -178,6 +197,20 @@ void createBricks(int level)
                 }
             }
         }
+    }
+    else if (level == 1)
+    {
+        for (int i = 0; i < BRICK_NUM_WIDTH; i++)
+        {
+            for (int j = 0; j < BRICK_NUM_HEIGHT; j+=2)
+            {
+                bricks[i][j].color1 = rand() % 3;
+                bricks[i][j].color2 = rand() % 3; //
+                bricks[i][j].isAlive = true;      //
+            }
+        }
+
+
     }
 }
 

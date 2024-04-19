@@ -129,7 +129,17 @@ void Game::Run() //How the game works
                 CleanUp();
             } else if (e.type == SDL_MOUSEBUTTONDOWN) {
                 menu->HandleMouseClick(e,level);
-                if (!menu->showMenu) {
+                if (menu->quit)
+                {
+                    delete paddle;          // Clean up if the game ended
+                    delete ball;
+                    delete field;
+
+                    CleanUp();
+
+                }
+                if (!menu->showMenu)
+                    {
                     isRunning = true; // Start the game loop if menu is no longer active
                     std::cerr << level ;
                 }
