@@ -99,13 +99,16 @@ struct Menu {
             levelTexture = IMG_LoadTexture(grenderer,"menukinhdi1.png");
             SDL_RenderCopy(grenderer, levelTexture, NULL, NULL);
             SDL_RenderPresent(grenderer);
+            }
 
-            if (mouseX >= 0 && mouseX <= 720 && mouseY >= 0 && mouseY <= 720/2)
+
+
+            else if (mouseX >= 380 && mouseX <= 538 && mouseY >=160 && mouseY <= 210)
                 {
                 level1 = 1;
                 }
 
-            }
+
         }
     }
 
