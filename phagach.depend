@@ -14,7 +14,7 @@
 	"Paddle.h"
 	"Ball.h"
 
-1713544061 c:\users\nmt\desktop\game clone\btl\ban up git\field.h
+1713691194 c:\users\nmt\desktop\game clone\btl\ban up git\field.h
 	"Game.h"
 	<stdlib.h>
 	<time.h>
@@ -32,7 +32,7 @@
 	<cmath>
 	<bits/stdc++.h>
 
-1713544233 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
+1713690717 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
 	"Game.h"
 	<math.h>
 	"Menu.h"
@@ -82,7 +82,7 @@
 	<SDL_image.h>
 	"Game.h"
 
-1713544233 c:\users\nmt\desktop\game clone\btl\ban up git\menu.h
+1713690541 c:\users\nmt\desktop\game clone\btl\ban up git\menu.h
 	<iostream>
 	<SDL.h>
 	<SDL_ttf.h>

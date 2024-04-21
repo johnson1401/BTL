@@ -69,7 +69,7 @@ struct Menu {
 
 
 
-    void HandleMouseClick(SDL_Event& event, int &level1)
+    void HandleMouseClick(SDL_Event& event, int &level1, int& life1)
     {
         if (event.type == SDL_MOUSEBUTTONDOWN)
         {
@@ -108,14 +108,17 @@ struct Menu {
             if (mouseX >= 387 && mouseX <= 611 && mouseY >=132 && mouseY <= 200)
                 {
                 level1 = 1;
+                life1 = 3;
                 }
             if (mouseX >= 391 && mouseX <= 614 && mouseY >=249 && mouseY <= 305 )
             {
                 level1 = 2;
+                life1 = 2;
             }
             if (mouseX >= 398 && mouseX <= 624 && mouseY >=352&& mouseY <=453)
             {
                 level1 = 3;
+                life1 = 1;
             }
 
 

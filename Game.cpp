@@ -128,7 +128,7 @@ void Game::Run() //How the game works
                 isRunning = false;
                 CleanUp();
             } else if (e.type == SDL_MOUSEBUTTONDOWN) {
-                menu->HandleMouseClick(e,level);
+                menu->HandleMouseClick(e,level,life);
                 if (menu->quit)
                 {
                     delete paddle;          // Clean up if the game ended
@@ -594,7 +594,8 @@ void Game::UpdateHUDTextures() {
     }
 
     playerScore = destroyedBricks * 100;
-    if (level == 2) playerScore -= 4400;
+    if (level == 3) playerScore -= 4400;
+    if (level == 1) playerScore -= 10500;
 
     scoreText << "SCORE: " << playerScore ;
 

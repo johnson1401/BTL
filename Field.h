@@ -134,7 +134,7 @@ struct Field
     }
     else if (level == 1)
     {
-        for (int i = 0; i < BRICK_NUM_WIDTH; i++)
+        for (int i = 0; i < BRICK_NUM_WIDTH; i+=2)
          {
             for (int j = 0; j < BRICK_NUM_HEIGHT; j+=2)
             {
@@ -200,7 +200,7 @@ void createBricks(int level)
     }
     else if (level == 1)
     {
-        for (int i = 0; i < BRICK_NUM_WIDTH; i++)
+        for (int i = 0; i < BRICK_NUM_WIDTH; i+=2)
         {
             for (int j = 0; j < BRICK_NUM_HEIGHT; j+=2)
             {
