@@ -79,7 +79,7 @@ struct Menu {
              std::cerr << mouseX << " " << mouseY <<std::endl << level1;
 
             // Check if the mouse click is within specified ranges
-            if (mouseX >= 130 && mouseX <= 250 && mouseY >= 130 && mouseY <= 200)           
+            if (mouseX >= 130 && mouseX <= 250 && mouseY >= 130 && mouseY <= 200)
             {
                 // Start the game
                 isRunning = true;
@@ -105,17 +105,17 @@ struct Menu {
 
 
 
-            if (mouseX >= 387 && mouseX <= 611 && mouseY >=132 && mouseY <= 200)
+            if (mouseX >= 460 && mouseX <= 611 && mouseY >=180 && mouseY <= 220)
                 {
                 level1 = 1;
                 life1 = 3;
                 }
-            if (mouseX >= 391 && mouseX <= 614 && mouseY >=249 && mouseY <= 305 )
+            if (mouseX >= 460 && mouseX <= 611 && mouseY >=270 && mouseY <= 330 )
             {
                 level1 = 2;
                 life1 = 2;
             }
-            if (mouseX >= 398 && mouseX <= 624 && mouseY >=352&& mouseY <=453)
+            if (mouseX >= 460 && mouseX <= 611 && mouseY >=360 && mouseY <=410)
             {
                 level1 = 3;
                 life1 = 1;
