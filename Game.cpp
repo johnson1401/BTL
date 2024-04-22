@@ -113,11 +113,12 @@ void Game::HandleKeyboardEvent(SDL_Event& event) {
 
 void Game::Run() //How the game works
 {
+    // khoi tao cac doi tuong filed, paddle, ball
     field = new Field(renderer);
     paddle = new Paddle(renderer);
     ball = new Ball(renderer);
 
-    Menu* menu = new Menu(renderer);
+    Menu* menu = new Menu(renderer); // khoi tao menu
     menu->InitMenu();
     menu->RenderMenu();
     while (!isRunning) {
@@ -178,7 +179,7 @@ void Game::Run() //How the game works
         }
 
         // delta timing
-        curframe = SDL_GetTicks();
+        curframe = SDL_GetTicks();      // dem thoi gian tro choi de cap nhat bien cho ham update
         float delta = (curframe - lastframe) / 800.0f;
         lastframe = curframe;
 
@@ -214,20 +215,28 @@ void Game::CleanUp()        // Clean up when the game ended
     Mix_Quit();
 }
 
-void Game::StartGame()
+void Game::StartGame()          // tao field, cho paddle ve vi tri ban dau, bat dau choi nhac
 {
     field->createBricks(level);
     ResetPaddle();
     PlayMusic();
 }
 
-void Game::ResetPaddle()
+void Game::ResetPaddle()        //  neu ball roi xuong, cap nhat lai vi tri cua ball
 {
+
+
+
     Ball_on_Paddle = true;
+
+
+    paddle->x = (SCREEN_WIDTH - paddle->width) / 2;
+    paddle->y = SCREEN_HEIGHT - paddle->height - 10; // Giả sử paddle nằm ở phía dưới của màn hình và có một khoảng cách 10 pixel từ bottom.
+
     InitBall();
 }
 
-void Game::InitBall()
+void Game::InitBall()       // khoi tao ball nam o giua paddle
 {
     ball->x = paddle->x + paddle->width/2 - ball->width/2;
     ball->y = paddle->y - ball->height;
@@ -242,8 +251,8 @@ void Game::Update(float delta)
     Uint32 mousestate = SDL_GetMouseState(&mouse_x, &mouse_y);
     //keyboard
     if (paddle->movingLeft) {
-        SetPaddlePosition(paddle->x - paddle->paddleSpeed * delta);
-    }
+        SetPaddlePosition(paddle->x - paddle->paddleSpeed * delta);         // delta dung de cam nhat paddle theo thoi gian thuc, khong theo may tinh
+    }                                                                       // dieu nay giup tro choi muot hon
     else if (paddle->movingRight) {
         SetPaddlePosition(paddle->x + paddle->paddleSpeed * delta);
     }
