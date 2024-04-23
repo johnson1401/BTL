@@ -89,3 +89,48 @@
 	<SDL_image.h>
 	"Game.h"
 
+1711357435 source:c:\users\nmt\desktop\game clone\btl\ban up git - copy\main.cpp
+	"Game.h"
+
+1713912076 c:\users\nmt\desktop\game clone\btl\ban up git - copy\game.h
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+	<iostream>
+	<stdio.h>
+	<sstream>
+	"Field.h"
+	"Paddle.h"
+	"Ball.h"
+
+1713798405 c:\users\nmt\desktop\game clone\btl\ban up git - copy\field.h
+	"Game.h"
+	<stdlib.h>
+	<time.h>
+	<SDL.h>
+	<SDL_image.h>
+	<bits/stdc++.h>
+
+1713018811 c:\users\nmt\desktop\game clone\btl\ban up git - copy\paddle.h
+	<SDL.h>
+	<SDL_image.h>
+
+1712892859 c:\users\nmt\desktop\game clone\btl\ban up git - copy\ball.h
+	<SDL.h>
+	<SDL_image.h>
+	<cmath>
+	<bits/stdc++.h>
+
+1713911446 source:c:\users\nmt\desktop\game clone\btl\ban up git - copy\game.cpp
+	"Game.h"
+	<math.h>
+	"Menu.h"
+
+1713807945 c:\users\nmt\desktop\game clone\btl\ban up git - copy\menu.h
+	<iostream>
+	<SDL.h>
+	<SDL_ttf.h>
+	<SDL_image.h>
+	"Game.h"
+

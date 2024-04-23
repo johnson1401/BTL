@@ -69,8 +69,6 @@ struct Game {
     void StopMusic();
     void PlaySoundEffect();
 
-    void GameLost();
-    void GameWin();
 
 
 
@@ -86,6 +84,14 @@ struct Game {
 
     void ShowHUD();
     void UpdateHUDTextures();
+
+
+    //endgame
+    bool lost;
+    bool win;
+    void GameLost();
+    void GameWin();
+
 };
 
 #endif // GAME_H_INCLUDED

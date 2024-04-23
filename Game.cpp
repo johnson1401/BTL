@@ -186,16 +186,31 @@ void Game::Run() //How the game works
         // Update and render the game
 
         Update(delta);
+         if (lost)
+            {
+                GameLost();
 
-        Render();
+            }
+
+        else
+        {
+            Render();
+        }
 
         SDL_Delay(10);
 
 
 
+
+
+
+
         if(isRunning == false)  // Game stops by a condition somewhere
             break;
+
+
     }
+
 
     delete paddle;          // Clean up if the game ended
     delete ball;
@@ -297,6 +312,8 @@ void Game::Update(float delta)
 void Game::Render()
 {
     SDL_RenderClear(renderer);
+
+
     SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
     field->Render(level);
     paddle->Render();
@@ -349,7 +366,10 @@ void Game::FieldCollision()
             life--;
         }
         else
-            GameLost();
+        {
+           lost = true;
+        }
+
     }
     // Left and right collisions
     if (ball->x < field->x)
@@ -564,8 +584,18 @@ void Game::StopMusic()
 void Game::GameLost()
 {
     StopMusic();
-    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Game over", "You lose! Restart the game to try again!", window);
-    isRunning = false;
+
+    SDL_RenderClear(renderer);
+
+
+
+    SDL_Texture *EndTexture = IMG_LoadTexture(renderer,"anhendgame.jpg");
+    if(EndTexture == NULL) std::cerr << "which";
+    SDL_RenderCopy(renderer,EndTexture,NULL,NULL);
+    SDL_RenderPresent(renderer);
+
+
+
 }
 
 void Game::GameWin()
