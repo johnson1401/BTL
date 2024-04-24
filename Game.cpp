@@ -188,7 +188,7 @@ void Game::Run() //How the game works
         Update(delta);
          if (lost)
             {
-                GameLost();
+                GameLost(e);
 
             }
 
@@ -581,7 +581,7 @@ void Game::StopMusic()
 
 
 
-void Game::GameLost()
+void Game::GameLost(SDL_Event &e)
 {
     StopMusic();
 
@@ -594,7 +594,57 @@ void Game::GameLost()
     SDL_RenderCopy(renderer,EndTexture,NULL,NULL);
     SDL_RenderPresent(renderer);
 
+    if (e.type == SDL_MOUSEBUTTONDOWN)
+        {
 
+
+            int mouseX, mouseY;
+            SDL_GetMouseState(&mouseX, &mouseY);
+
+            // Check if the mouse click is within specified ranges
+            if (mouseX >= 190 && mouseX <= 500 && mouseY >= 230 && mouseY <= 355)
+            {
+                // Start the game
+                isRunning = true; // Ensure that isRunning is set to true
+
+              /*  // Create a new menu
+                Menu* menu = new Menu(renderer); // khoi tao menu
+                menu->InitMenu();
+
+                menu->showMenu = true;
+                menu->RenderMenu();
+                menu->HandleMouseClick(event,level,life);
+
+            */
+
+
+
+
+                playerScore = 0; // Reset the player's score
+                lost = false; // Reset the lost flag
+
+
+
+                SDL_RenderClear(renderer);
+                StartGame();
+                return;
+            }
+            else if (mouseX >= 590 && mouseX <= 920 && mouseY >= 230 && mouseY <= 355)
+            {
+                // Stop the game
+                isRunning = false;
+
+                CleanUp();
+
+                SDL_Quit();
+
+                return;
+            }
+
+
+
+
+    }
 
 }
 

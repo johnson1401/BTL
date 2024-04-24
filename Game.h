@@ -89,7 +89,7 @@ struct Game {
     //endgame
     bool lost;
     bool win;
-    void GameLost();
+    void GameLost(SDL_Event &e);
     void GameWin();
 
 };

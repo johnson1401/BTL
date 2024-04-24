@@ -2,7 +2,7 @@
 1711357435 source:c:\users\nmt\desktop\game clone\btl\ban up git\main.cpp
 	"Game.h"
 
-1713544092 c:\users\nmt\desktop\game clone\btl\ban up git\game.h
+1713917226 c:\users\nmt\desktop\game clone\btl\ban up git\game.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -32,7 +32,7 @@
 	<cmath>
 	<bits/stdc++.h>
 
-1713798977 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
+1713912933 source:c:\users\nmt\desktop\game clone\btl\ban up git\game.cpp
 	"Game.h"
 	<math.h>
 	"Menu.h"
