@@ -47,6 +47,21 @@ Your duty is destroy all the bricks rendered on the Field, while keeping the bal
 The paddle may move horizontally and is controlled by your keyboard. Using A D or Left and Right Arrow Button to move the paddle.
 
 
+> These are screenshots when playing game:
+![menu1](https://hackmd.io/_uploads/r1W_3s8b0.jpg)
+This is when you open the game
+
+![menu2](https://hackmd.io/_uploads/Hkb_nsLbA.jpg)
+Clicked into the Options button
+
+![ingame1](https://hackmd.io/_uploads/Hy-_ni8-C.jpg)
+Clicked into the Play button
+
+![endgame](https://hackmd.io/_uploads/H1Zdnj8WA.jpg)
+When you let your ball touch the ground
+
+
+
 **IV.Milestone**
 
 
