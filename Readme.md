@@ -48,16 +48,18 @@ The paddle may move horizontally and is controlled by your keyboard. Using A D o
 
 
 > These are screenshots when playing game:
-![menu1](https://hackmd.io/_uploads/r1W_3s8b0.jpg)
+
+
+![menu1](https://github.com/johnson1401/BTL/assets/160694445/01034f6e-b475-44c2-a685-18702fba9873)
 This is when you open the game
 
-![menu2](https://hackmd.io/_uploads/Hkb_nsLbA.jpg)
+![menu2](https://github.com/johnson1401/BTL/assets/160694445/72c7a3dd-975c-4ef9-8a02-6065a5f4bd76)
 Clicked into the Options button
 
-![ingame1](https://hackmd.io/_uploads/Hy-_ni8-C.jpg)
+![ingame1](https://github.com/johnson1401/BTL/assets/160694445/9d0f7f03-b172-4757-969a-48408d9046b7)
 Clicked into the Play button
 
-![endgame](https://hackmd.io/_uploads/H1Zdnj8WA.jpg)
+![endgame](https://github.com/johnson1401/BTL/assets/160694445/c4d9756a-d56a-4e83-a3c4-79a6ce3b86d5)
 When you let your ball touch the ground
 
 
@@ -100,7 +102,8 @@ and this for pillar: https://www.realm667.com/en/repository-18489/prop-stop-main
 * Background: https://wallhere.com/vi/wallpaper/125174
 
 **VI.Prerequisites**
-All dependencies (for Windows only)2 are in bin, include, lib folders.
 
-C, C++
-SDL2, SDL2 image, SDL2 mixer, SDL2 ttf
+All dependencies (for Windows only)2 are in bin, include, lib folders.
+C, C++ SDL2, SDL2 image, SDL2 mixer, SDL2 ttf.
+You may need to install g++ mingw on your computer to run it.
+
