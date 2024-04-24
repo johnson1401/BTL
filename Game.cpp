@@ -163,6 +163,7 @@ void Game::Run() //How the game works
     // Game loop
     while (1)
     {
+        time_val = SDL_GetTicks() / 1000;
 
         // Handler events
         SDL_Event e;
@@ -622,6 +623,7 @@ void Game::GameLost(SDL_Event &e)
 
                 playerScore = 0; // Reset the player's score
                 lost = false; // Reset the lost flag
+                time_val = 0; // Reset time
 
 
 
@@ -721,38 +723,76 @@ void Game::UpdateHUDTextures() {
 
     lifeTexture = SDL_CreateTextureFromSurface(renderer, lifeSurface);
     SDL_FreeSurface(lifeSurface);
+
+    // update time
+    // Cập nhật texture cho thời gian
+    std::stringstream timeText;
+    SDL_Color timeColor = {255, 255, 0}; // Màu vàng cho thời gian
+
+    // Tính toán thời gian (ví dụ: từng giây hoặc phút) và cập nhật vào timeText
+
+    timeText << "TIME: " << time_val << " s";
+
+    SDL_Surface *timeSurface = TTF_RenderText_Solid(font, timeText.str().c_str(), timeColor);
+
+    if (timeSurface == nullptr) {
+        std::cerr << "Failed to create time surface! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        return;
+    }
+
+    // Xóa texture thời gian cũ nếu có
+    if (timeTexture != nullptr) {
+        SDL_DestroyTexture(timeTexture);
+    }
+
+    // Tạo texture mới từ surface
+    timeTexture = SDL_CreateTextureFromSurface(renderer, timeSurface);
+    SDL_FreeSurface(timeSurface);
 }
+
+
+
+
 void Game::ShowHUD() {
     // Kiểm tra xem texture điểm số và mạng số lượt chơi đã được cập nhật chưa
-    if (scoreTexture == nullptr || lifeTexture == nullptr) {
+    if (scoreTexture == nullptr || lifeTexture == nullptr || timeTexture == nullptr) {
         // Nếu chưa, cập nhật texture điểm số và mạng số lượt chơi
         UpdateHUDTextures();
     }
 
     // Kiểm tra lại sau khi cập nhật
-    if (scoreTexture != nullptr && lifeTexture != nullptr) {
-        // Lấy kích thước của texture điểm số và mạng số lượt chơi
+    else   {
+        // Lấy kích thước của texture điểm số và mạng số lượt chơi va time
         int scoreTextureWidth, scoreTextureHeight;
         SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreTextureWidth, &scoreTextureHeight);
 
         int lifeTextureWidth, lifeTextureHeight;
         SDL_QueryTexture(lifeTexture, NULL, NULL, &lifeTextureWidth, &lifeTextureHeight);
 
-        // Vị trí để vẽ texture điểm số và mạng số lượt chơi
+        int timeTextureWidth, timeTextureHeight;
+        SDL_QueryTexture(timeTexture, NULL, NULL, &timeTextureWidth, &timeTextureHeight);
+
+        // Vị trí để vẽ texture điểm số và mạng số lượt chơi va thoi gian
         int scoreTextureX = 10; // X coordinate
         int scoreTextureY = SCREEN_HEIGHT - scoreTextureHeight - 10; // Y coordinate
 
         int lifeTextureX = SCREEN_WIDTH - lifeTextureWidth - 15; // X coordinate
         int lifeTextureY = SCREEN_HEIGHT - lifeTextureHeight - 10; // Y coordinate
 
-        // Vẽ texture điểm số và mạng số lượt chơi lên màn hình
+
+        int timeTextureX = SCREEN_WIDTH / 2 - timeTextureWidth / 2; // X coordinate
+        int timeTextureY = SCREEN_HEIGHT - timeTextureHeight - 10; // Y coordinate
+
+        // Vẽ texture điểm số và mạng số lượt chơi lên màn hình va thoi gian
         SDL_Rect scoreDestRect = {scoreTextureX, scoreTextureY, scoreTextureWidth, scoreTextureHeight};
         SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreDestRect);
 
         SDL_Rect lifeDestRect = {lifeTextureX, lifeTextureY, lifeTextureWidth, lifeTextureHeight};
         SDL_RenderCopy(renderer, lifeTexture, NULL, &lifeDestRect);
-    } else
-     {
-        std::cerr << "Failed to render HUD!" << std::endl;
-     }
+
+
+        SDL_Rect timeDestRect = {timeTextureX, timeTextureY, timeTextureWidth, timeTextureHeight};
+        SDL_RenderCopy(renderer, timeTexture, NULL, &timeDestRect);
+    }
+
 }

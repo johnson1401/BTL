@@ -76,11 +76,14 @@ struct Game {
 
 
     //score
+    Uint32 time_val ;
+
     int BrickCount();
     int playerScore = 0;
     int life = 1;
     SDL_Texture *scoreTexture = nullptr;
     SDL_Texture *lifeTexture = nullptr;
+    SDL_Texture *timeTexture = nullptr;
 
     void ShowHUD();
     void UpdateHUDTextures();
