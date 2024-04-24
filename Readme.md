@@ -2,6 +2,7 @@ This is my own game project using C++ and SDL2 libraries at University of Engine
 
 
 #  * **`Table of Content:`**
+
 * 1.Information
 * 2.Idea
 * 3.Gameplay
@@ -22,6 +23,7 @@ This is my own game project using C++ and SDL2 libraries at University of Engine
 
 
 **II.Idea**
+
 This is a basic Brick Breaker game.
 
 Your target is to destroy all the brick that appears on the screen.
@@ -35,6 +37,7 @@ I chose this game because i thought it was simple. But  "it's tricky, right? "
 
 **III.Gameplay**
 
+
 1.Objective
 I create 3 Objs: Paddle, Ball, Brick (which is in Field).
 When the game starts, players will see the ball pop up from the center of the paddle. As the ball coming up, it hit some of the Bricks. After being hit, the brick disappears and the ball is reflected from the way it comming. 
@@ -45,6 +48,7 @@ The paddle may move horizontally and is controlled by your keyboard. Using A D o
 
 
 **IV.Milestone**
+
 
 * 23/2/2024 - 1/3/2024: Install SDL, Have ideas about the game.
 * 1/3 - 8/3: Add object, render object to the game.
@@ -68,6 +72,7 @@ The paddle may move horizontally and is controlled by your keyboard. Using A D o
 
 
 **V.Credit**
+
 * I learn most of things here: http://rembound.com/articles/the-breakout-tutorial
 and thanks for chat GPT 3.5 (although most of time you make my problem harder to solve).
 
