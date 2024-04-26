@@ -39,7 +39,12 @@ I chose this game because I thought it was simple. But  "it's tricky, right? "
 
 
  
-I created 3 Objs: Paddle, Ball, and Brick (which is in Field).
+I created 3 Objs: 
+Paddle,
+
+Ball,
+
+and Brick (which is in Field).
 When the game starts, players will see the ball pop up from the center of the paddle. As the ball came up, it hit some of the Bricks. After being hit, the brick disappears and the ball is reflected from the way it coming. 
 If the ball hits the top side or left/right side or paddle, it will reflect too.
 
@@ -67,7 +72,11 @@ When you let your ball touch the ground
 ## **IV.Milestone**
 
 
-* 23/2/2024 - 1/3/2024: Install SDL, Have ideas about the game.
+* 23/2/2024 - 1/3/2024: Install SDL, Have ideas about the game![Paddlered](https://github.com/johnson1401/BTL/assets/160694445/2e990549-d3e5-4ea0-a2f6-aaae704951f8)
+![Breakout_Tile_Free](https://github.com/johnson1401/BTL/assets/160694445/84782624-9675-4432-a14c-c81a76ab6f29)
+![ball1](https://github.com/johnson1401/BTL/assets/160694445/87a05c3c-2173-4e34-bb66-6ac58c09f8cc)
+![Paddlered](https://github.com/johnson1401/BTL/assets/160694445/fff21077-fbd2-418a-9c73-0401b12535c6)
+.
 * 1/3 - 8/3: Add object, render object to the game.
 * 
 * 8/3 - 15/3/2024: Learning about the collision logic, and adding them into the game.
@@ -105,7 +114,7 @@ and this for pillar: https://www.realm667.com/en/repository-18489/prop-stop-main
 
 ## **VI.Prerequisites**
 
-All dependencies (for Windows only)2 are in bin, include, lib folders.
-C, C++ SDL2, SDL2 image, SDL2 mixer, SDL2 ttf.
+All dependencies (for Windows only)2 are in bin, include, lib folders. U will see an .exe file there. 
+Make sure to put all the resources of the game (font, image, sound, sdl files) and open the .exe file to play game.
 You may need to install g++ mingw on your computer to run it.
 
