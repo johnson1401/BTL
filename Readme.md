@@ -137,4 +137,5 @@ and this for pillar: https://www.realm667.com/en/repository-18489/prop-stop-main
 All dependencies (for Windows only)2 are in bin, include, lib folders. U will see an .exe file there. 
 Make sure to put all the resources of the game (font, image, sound, sdl files) and open the .exe file to play game.
 You may need to install g++ mingw on your computer to run it.
+OR you can just download the Game.zip file and then open file phagach.exe @@
 
