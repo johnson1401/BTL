@@ -119,6 +119,7 @@ void Game::Run() //How the game works
     ball = new Ball(renderer);
 
     Menu* menu = new Menu(renderer); // khoi tao menu
+
     menu->InitMenu();
     menu->RenderMenu();
     while (!isRunning) {
@@ -330,7 +331,7 @@ void Game::SetPaddlePosition(float x)       // Set the x rect of paddle
 {
     float out_x;   // x for the output wanted
 
-    // keep the paddle inside of the field
+    // keep the paddle in the window
     if (x < field->x)
     {
         // Left
@@ -350,7 +351,7 @@ void Game::SetPaddlePosition(float x)       // Set the x rect of paddle
 
 void Game::FieldCollision()
 {
-    if (ball->y < field->y)     // Hit top wall
+    if (ball->y < field->y)
     {
         // Top
         ball->y = field->y;
@@ -358,12 +359,12 @@ void Game::FieldCollision()
     }
     else if (ball->y + ball->height > field->y + field->height)
     {
-        // Reach the void
+
 
         // Bottom
         if(life > 0)
         {
-            ResetPaddle(); //GameOver();
+            ResetPaddle();
             life--;
         }
         else
@@ -389,7 +390,7 @@ void Game::FieldCollision()
 
 void Game::BrickCollision()
 {
-    bool continueChecking = true; // Flag to continue checking collisions
+    bool continueChecking = true; // Flag to save memory
 
     for (int i = 0; i < BRICK_NUM_WIDTH && continueChecking; i++)
     {
@@ -419,7 +420,7 @@ void Game::BrickCollision()
                     {
                         if (dy < 0)
                         {
-                            // Top (axis reversed)
+                            // Top
                             SideCollision(1);
                         }
                         else
@@ -449,11 +450,11 @@ void Game::BrickCollision()
 }
 
 
-void Game::SideCollision(int sidehit)       //Solving bugs involving hitting the intersection of 2 bricks
+void Game::SideCollision(int sidehit)       // bugs when hitting 2 or more bricks one time
 {
     // sidehit 0: Left, 1: Top, 2: Right, 3: Bottom
 
-    // coeficient factor
+    // he so (neu he so la < 0 thi se di chuyen sang trai hoac len tren)
     int cx = 1;
     int cy = 1;
 
@@ -511,7 +512,7 @@ void Game::SideCollision(int sidehit)       //Solving bugs involving hitting the
             }
         }
     }
-    // Set the new direction by multiplying the coefficient
+    // Set lai vi tri cua ball dua tren cx, cy
     ball->SetDirection(cx*ball->dirX, cy*ball->dirY);
 }
 
@@ -649,6 +650,7 @@ void Game::GameLost(SDL_Event &e)
     }
 
 }
+
 
 void Game::GameWin()
 {
