@@ -8,9 +8,10 @@ DEMO VIDEO: https://drive.google.com/file/d/1pmu0QELpC_F0YqXkmFLuUnrJzRYS9bMH/vi
 1. [Information](#iinformation)
 2. [Idea](#iiidea)
 3. [Gameplay](#iiigameplay)
-4. [Milestone](#ivmilestone)
-5. [Credit](#vcredit)
-6. [Prerequisites](#viprerequisites)
+4. [Code Explain](#ivcodeexplain)
+5. [Milestone](#ivmilestone)
+6. [Credit](#vcredit)
+7. [Prerequisites](#viprerequisites)
 
 
 
@@ -80,7 +81,9 @@ Clicked on the Play button. The game starts!
 ![endgame](https://github.com/johnson1401/BTL/assets/160694445/c4d9756a-d56a-4e83-a3c4-79a6ce3b86d5)
 When you let your ball touch the ground, the endgame screeen will appear.
 
-#### Most Important function
+
+## **IV.Code Explain**
+### Most Important function
 **1. Check collision (in game.cpp)**
 *     1.Reflection:
 *       This function calculates the reflection direction of the ball based on its relative position on the paddle.
@@ -91,12 +94,50 @@ When you let your ball touch the ground, the endgame screeen will appear.
     
 **3. Game.update (in game.cpp)**
 *     Update everything in the game loop
+     
+### Detail:
+
+**1.Field.h**
+* *Brick:* Represents a brick in the game. It contains fields for color, indicating whether the brick is alive or destroyed.
+* *Field:* Represents the game field. It includes fields for the position and size of the field, an array of bricks (bricks), and SDL textures and renderer for rendering the bricks and the field's boundary.
+* *Render and createBricks:* generates and renders bricks for the game base on diffirent levels
+
+
+**2.Ball.h**
+* *Ball:* Represents a ball in the game. It includes fields for the position, size, speed, direction of movement, SDL renderer, and texture of the ball.
+* *SetDirection(float _dirX, float _dirY):* Sets the direction of movement for the ball based on the provided direction components _dirX and _dirY. It normalizes the direction vector and scales it by the ball's speed to ensure consistent movement.
+
+**3.Paddle.h**
+* *Paddle:* Represents a paddle in the game. It includes fields for the position, size, speed, direction of movement, SDL renderer, and texture of the paddle.
+* *Movement Functions:*
+1. * *MoveLeft():* Signals that the paddle should move to the left.
+1. * *StopMovingLeft():* Signals that the paddle should stop moving to the left.
+1. * *MoveRight():* Signals that the paddle should move to the right.
+1. * *StopMovingRight():* Signals that the paddle should stop moving to the right.
+
+**4.Menu.h**
+* *Menu:* Represents the game menu. It includes fields for the SDL renderer, font, background texture, level texture, and flags indicating menu status and game state.
+* *HandleMouseClick* : Handles mouse clicks on the menu. It checks the mouse position and performs actions accordingly, such as starting or stopping the game or selecting a game level.
+
+**5.Game.h - cpp**
+* *Init() Function.*
+* *HandleKeyboardEvent() Function:* Handles keyboard events for moving the paddle left and right.
+* *Run() Function:*
+1. * Creates instances of the game's components (field, paddle, ball, menu).
+1. * Initializes the menu and renders it.
+1. * Handles mouse clicks on the menu to start the game or exit.
+1. * Enters the game loop, handling events, updating the game state, and rendering.
+* *Update() Function:* Updates the game state, handling user input, collisions, and game logic.
+* *Various Helper Functions:* Functions like SetPaddlePosition, FieldCollision, BrickCollision, PaddleCollision, etc., handle specific aspects of the game mechanics such as collision detection and response.
+    And some others function to show score, music, life...
 
 
 
 
 
-## **IV.Milestone**
+
+
+## **V.Milestone**
 
 
 * 23/2/2024 - 1/3/2024: Install SDL, Have ideas about the game!
@@ -119,10 +160,10 @@ When you let your ball touch the ground, the endgame screeen will appear.
 
 
 
-## **V.Credit**
+## **VI.Credit**
 
 * I learn most of things here:
-* 
+  
 http://rembound.com/articles/the-breakout-tutorial
 
 https://lazyfoo.net/tutorials/SDL
@@ -141,7 +182,7 @@ and this for pillar: https://www.realm667.com/en/repository-18489/prop-stop-main
 * Menu: https://www.vn.freelancer.com/contest/design-a-main-menu-for-a-horror-game-1493042
 * Background: https://wallhere.com/vi/wallpaper/125174
 
-## **VI.Prerequisites**
+## **VII.Prerequisites**
 
 All dependencies (for Windows only)2 are in bin, include, lib folders. U will see an .exe file there. 
 Make sure to put all the resources of the game (font, image, sound, sdl files) and open the .exe file to play game.
