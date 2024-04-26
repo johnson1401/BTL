@@ -1,6 +1,6 @@
 This is my game project using C++ and SDL2 libraries at University of Engineering and Technology, Vietnam National University.
 
-DEMO VIDEO: [https://www.youtube.com/watch?v=o1_R6aeb5iQ](https://youtu.be/LAqKwJBjPT4)
+DEMO VIDEO: https://drive.google.com/file/d/1pmu0QELpC_F0YqXkmFLuUnrJzRYS9bMH/view?usp=sharing
 
 
 #  * **`Table of Content:`**
