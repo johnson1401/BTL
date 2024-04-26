@@ -3,26 +3,26 @@ This is my game project using C++ and SDL2 libraries at University of Engineerin
 
 #  * **`Table of Content:`**
 
-* 1.Information
-* 2.Idea
-* 3.Gameplay
-* 4.Milestone
-* 5.Credit
-* 6.Prerequisites
+1. [Information](#iinformation)
+2. [Idea](#iiidea)
+3. [Gameplay](#iiigameplay)
+4. [Milestone](#ivmilestone)
+5. [Credit](#vcredit)
+6. [Prerequisites](#viprerequisites)
 
 
 
 
 
 
- **I.Information**
+ ## **I.Information**
 * Name: Trần Hoàng Sơn
 * Student ID: 23020699
 * Class: K68J
 * Email: sorrylight1@gmail.com
 
 
-**II.Idea**
+## **II.Idea**
 
 This is a basic Brick Breaker game.
 
@@ -35,7 +35,7 @@ I chose this game because I thought it was simple. But  "it's tricky, right? "
 
 
 
-**III.Gameplay**
+## **III.Gameplay**
 
 
  
@@ -64,7 +64,7 @@ When you let your ball touch the ground
 
 
 
-**IV.Milestone**
+## **IV.Milestone**
 
 
 * 23/2/2024 - 1/3/2024: Install SDL, Have ideas about the game.
@@ -88,7 +88,7 @@ When you let your ball touch the ground
 
 
 
-**V.Credit**
+## **V.Credit**
 
 * I learn most of things here: http://rembound.com/articles/the-breakout-tutorial
 and thanks for chat GPT 3.5 (although most of the time you make my problem harder to solve).
@@ -103,7 +103,7 @@ and this for pillar: https://www.realm667.com/en/repository-18489/prop-stop-main
 * Menu: https://www.vn.freelancer.com/contest/design-a-main-menu-for-a-horror-game-1493042
 * Background: https://wallhere.com/vi/wallpaper/125174
 
-**VI.Prerequisites**
+## **VI.Prerequisites**
 
 All dependencies (for Windows only)2 are in bin, include, lib folders.
 C, C++ SDL2, SDL2 image, SDL2 mixer, SDL2 ttf.
