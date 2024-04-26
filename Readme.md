@@ -120,7 +120,14 @@ When you let your ball touch the ground, the endgame screeen will appear.
 
 ## **V.Credit**
 
-* I learn most of things here: http://rembound.com/articles/the-breakout-tutorial
+* I learn most of things here:
+* 
+http://rembound.com/articles/the-breakout-tutorial
+
+https://lazyfoo.net/tutorials/SDL
+
+https://github.com/amunch/DX-Ball
+
 and thanks for chat GPT 3.5 (although most of the time you make my problem harder to solve).
 
 * I use this set for paddle and bricks: https://opengameart.org/content/breakout-brick-breaker-tile-set-free
@@ -138,5 +145,6 @@ and this for pillar: https://www.realm667.com/en/repository-18489/prop-stop-main
 All dependencies (for Windows only)2 are in bin, include, lib folders. U will see an .exe file there. 
 Make sure to put all the resources of the game (font, image, sound, sdl files) and open the .exe file to play game.
 You may need to install g++ mingw on your computer to run it.
+
 OR you can just download the Game.zip file and then open file phagach.exe @@
 
